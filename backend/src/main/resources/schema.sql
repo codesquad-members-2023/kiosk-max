@@ -20,7 +20,7 @@ USE `kiosk`;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kiosk`.`category`
 (
-    `id`   INT         NOT NULL,
+    `id`   INT         NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`category`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kiosk`.`item`
 (
-    `id`          INT          NOT NULL,
+    `id`          INT          NOT NULL AUTO_INCREMENT,
     `name`        VARCHAR(45)  NOT NULL,
     `price`       INT          NOT NULL,
     `image`       VARCHAR(512) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`item`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kiosk`.`payment`
 (
-    `id`    INT          NOT NULL,
+    `id`    INT          NOT NULL AUTO_INCREMENT,
     `name`  VARCHAR(45)  NOT NULL,
     `image` VARCHAR(512) NOT NULL,
     PRIMARY KEY (`id`)
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`payment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kiosk`.`orders`
 (
-    `id`         INT      NOT NULL,
+    `id`         INT      NOT NULL AUTO_INCREMENT,
     `amount`     INT      NOT NULL COMMENT '지불금액',
     `total`      INT      NOT NULL COMMENT '총 결제금액',
     `change`     INT      NOT NULL COMMENT '거스름돈',
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`orders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kiosk`.`order_item`
 (
-    `id`            INT NOT NULL,
+    `id`            INT NOT NULL AUTO_INCREMENT,
     `item_quantity` INT NOT NULL,
     `price`         INT NOT NULL,
     `item_id`       INT NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`order_item`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kiosk`.`option_type`
 (
-    `id`   INT         NOT NULL,
+    `id`   INT         NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`option_type`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kiosk`.`options`
 (
-    `id`             INT         NOT NULL,
+    `id`             INT         NOT NULL AUTO_INCREMENT,
     `name`           VARCHAR(45) NOT NULL,
     `option_type_id` INT         NOT NULL,
     PRIMARY KEY (`id`),
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`options`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kiosk`.`order_item_option`
 (
-    `id`            INT NOT NULL,
+    `id`            INT NOT NULL AUTO_INCREMENT,
     `options_id`    INT NOT NULL,
     `order_item_id` INT NOT NULL,
     PRIMARY KEY (`id`),
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`order_item_option`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kiosk`.`item_option`
 (
-    `id`         INT NOT NULL,
+    `id`         INT NOT NULL AUTO_INCREMENT,
     `options_id` INT NOT NULL,
     `item_id`    INT NOT NULL,
     INDEX `fk_option_has_item_option1_idx` (`options_id` ASC) VISIBLE,
