@@ -1,6 +1,9 @@
 .app {
   width: 1000px;
   height: 1500px;
+  display: flex;
+  flex-direction: column;
   border: 3px solid black;
   margin: 0 auto;
+  box-sizing: border-box;
 }

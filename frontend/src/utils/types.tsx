@@ -7,12 +7,7 @@ export type TabButtonProps = {
 };
 
 export type Product = { name: string; price: number };
-
 export type MockData = Record<TabMockDataType, Product[]>;
-
-export interface ContentProps {
-  selectedTab: TabMockDataType | "";
-}
 
 export type NavigationProps = {
   selectedTab: TabMockDataType | "";

@@ -1,0 +1,40 @@
+.content {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* 수정 */
+  box-sizing: border-box;
+  padding: 100px;
+}
+.menuWrapper {
+  display: grid;
+  grid-gap: 60px;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 45% 45%;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.menu img {
+  width: 60%;
+}
+
+.menu div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.logoImg {
+  width: 100%;
+}
