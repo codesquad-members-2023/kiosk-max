@@ -9,5 +9,4 @@ public class OrderItem {
 	private int itemId;
 	private int ordersId;
 	private int price;
-
 }
