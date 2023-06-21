@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`item`
     `name`        VARCHAR(45)  NOT NULL,
     `price`       INT          NOT NULL,
     `image`       VARCHAR(512) NOT NULL,
+    `description` VARCHAR(128) NOT NULL,
     `category_id` INT          NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_item_category_idx` (`category_id` ASC) VISIBLE
@@ -61,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`orders`
     `id`         INT      NOT NULL AUTO_INCREMENT,
     `amount`     INT      NOT NULL COMMENT '지불금액',
     `total`      INT      NOT NULL COMMENT '총 결제금액',
-    `change`     INT      NOT NULL COMMENT '거스름돈',
+    `remain`     INT      NOT NULL COMMENT '거스름돈',
     `order_date` DATETIME NOT NULL,
     `payment_id` INT      NOT NULL,
     PRIMARY KEY (`id`),
