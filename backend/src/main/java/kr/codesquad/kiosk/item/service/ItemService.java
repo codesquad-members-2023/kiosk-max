@@ -8,6 +8,7 @@ import kr.codesquad.kiosk.item.domain.Options;
 import kr.codesquad.kiosk.item.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class ItemService {
 	private final ItemRepository itemRepository;
 
+	@Transactional(readOnly = true)
 	public ItemDetailsResponse getItemDetails(Integer itemId) {
 		Item item = itemRepository.findById(itemId)
 				.orElseThrow(() -> new BusinessException(ErrorCode.ITEM_NOT_FOUND));
