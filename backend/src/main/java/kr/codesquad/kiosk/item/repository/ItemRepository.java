@@ -54,6 +54,10 @@ public class ItemRepository {
 						rs.getInt("option_id")
 				));
 
+		return createOptionMap(itemOptionDtos);
+	}
+
+	private Map<String, List<Options>> createOptionMap(List<ItemOptionDto> itemOptionDtos) {
 		Map<String, List<Options>> map = new HashMap<>();
 		itemOptionDtos.forEach(itemOption -> map.merge(itemOption.optionTypeName,
 				List.of(new Options(itemOption.optionId, itemOption.optionName)),
