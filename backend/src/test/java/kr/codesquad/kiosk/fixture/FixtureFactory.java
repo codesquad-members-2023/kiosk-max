@@ -1,5 +1,6 @@
 package kr.codesquad.kiosk.fixture;
 
+import kr.codesquad.kiosk.item.controller.dto.response.ItemDetailsResponse;
 import kr.codesquad.kiosk.item.domain.Item;
 import kr.codesquad.kiosk.item.domain.Options;
 
@@ -8,6 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class FixtureFactory {
+
+	public static ItemDetailsResponse createItemDetailsResponse() {
+		return ItemDetailsResponse.from(createItem(), createOptions());
+	}
 
 	public static Item createItem() {
 		return new Item(1, "콜드 브루", 5000, "url", "description", 1);
