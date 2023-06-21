@@ -1,15 +1,15 @@
 package kr.codesquad.kiosk.domain;
 
-import java.time.LocalDateTime;
-
 import lombok.Getter;
+
+import java.time.LocalDateTime;
 
 @Getter
 public class Orders {
 	private int id;
 	private int amount;
 	private int total;
-	private int change;
+	private int remain;
 	private LocalDateTime orderDate;
 	private int paymentId;
 }

@@ -8,5 +8,6 @@ public class Item {
 	private String name;
 	private int price;
 	private String image;
+	private String description;
 	private int categoryId;
 }
