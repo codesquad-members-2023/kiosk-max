@@ -1,4 +1,4 @@
-package kr.codesquad.kiosk.domain;
+package kr.codesquad.kiosk.payment.domain;
 
 import lombok.Getter;
 
