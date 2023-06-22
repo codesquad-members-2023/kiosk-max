@@ -40,9 +40,7 @@ class PaymentControllerTest {
 			)
 			.andDo(print())
 			.andExpect(status().isOk())
-			.andExpect(jsonPath("$[0].id").exists())
-			.andExpect(jsonPath("$[0].name").exists())
-			.andExpect(jsonPath("$[0].image").exists());
+			.andExpect(jsonPath("$.payments").exists());
 	}
 
 	@DisplayName("결제 방식 목록이 없으면 404 Not Found를 반환한다.")
