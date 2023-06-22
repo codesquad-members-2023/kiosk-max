@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MenuItem } from "../../mockData";
 import styles from "../../style/Content.module.css";
 
@@ -14,6 +14,18 @@ export const SelectModal = ({
   dialogRef,
 }: SelectModalType) => {
   const [menuCount, setMenuCount] = useState(1);
+  const [selectedOptions, setSelectedOptions] = useState<
+    Record<string, string>
+  >({});
+  const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
+
+  useEffect(() => {
+    const allSelected = Object.keys(modalData.options).every(
+      (optionKey) => selectedOptions[optionKey]
+    );
+
+    setIsAllSelected(allSelected && menuCount > 0);
+  }, [selectedOptions, menuCount]);
 
   const increase = () => {
     if (menuCount + 1 < 99) {
@@ -25,6 +37,17 @@ export const SelectModal = ({
     if (menuCount - 1 > 0) {
       setMenuCount(menuCount - 1);
     }
+  };
+
+  const handleOptionChange = (optionKey: string, optionValue: string) => {
+    setSelectedOptions({
+      ...selectedOptions,
+      [optionKey]: optionValue,
+    });
+  };
+
+  const handleAddButton = () => {
+    console.log(menuCount, selectedOptions);
   };
 
   return (
@@ -41,7 +64,7 @@ export const SelectModal = ({
           setMenuCount(1);
         }}
       >
-        X
+        <div className={styles.closeLogo}></div>
       </button>
       <div className={styles.modalContent}>
         <div className={styles.modalMenu} key={modalData.name}>
@@ -58,15 +81,26 @@ export const SelectModal = ({
           <div className={styles.ModalTextDiv}>{`${modalData.price}원`}</div>
         </div>
         <div className={styles.menuOptions}>
-          {Object.keys(modalData.options).map((optionKey, index) => (
-            <div key={index} className={styles.option}>
-              {modalData.options[optionKey].map((optionValue, index) => (
-                <button key={index} className={styles.optionButton}>
-                  {optionValue}
-                </button>
+          {Object.keys(modalData.options).map((optionKey, index1) => (
+            <div key={optionKey + index1} className={styles.option}>
+              {modalData.options[optionKey].map((optionValue, index2) => (
+                <React.Fragment key={optionKey + optionValue + index2}>
+                  <input
+                    type="radio"
+                    className={styles.optionRadio}
+                    id={optionValue}
+                    name={optionKey}
+                    value={optionValue}
+                    onChange={() => handleOptionChange(optionKey, optionValue)}
+                  />
+                  <label htmlFor={optionValue} className={styles.optionButton}>
+                    {optionValue}
+                  </label>
+                </React.Fragment>
               ))}
             </div>
           ))}
+
           <div className={styles.counter}>
             <button onClick={decrease}>-</button>
             <div className={styles.countNumber}>{menuCount}</div>
@@ -74,7 +108,13 @@ export const SelectModal = ({
           </div>
         </div>
       </div>
-      <button className={styles.addButton}>담기</button>
+      <button
+        className={styles.addButton}
+        disabled={!isAllSelected}
+        onClick={isAllSelected ? handleAddButton : undefined}
+      >
+        담기
+      </button>
     </dialog>
   );
 };
