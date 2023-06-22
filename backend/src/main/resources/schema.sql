@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `kiosk`.`orders`
     `total`      INT      NOT NULL COMMENT '총 결제금액',
     `remain`     INT      NOT NULL COMMENT '거스름돈',
     `order_date` DATETIME NOT NULL,
+    `order_num`  INT      NOT NULL,
     `payment_id` INT      NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_orders_payment1_idx` (`payment_id` ASC) VISIBLE
