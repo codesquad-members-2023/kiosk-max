@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TabMockDataType } from "./utils/types";
 import { Navigation } from "./components/Navigation";
 import styles from "./style/App.module.css";
-import { Content } from "./components/Content";
+import { Content } from "./components/content/Content";
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState<TabMockDataType | "">("");

@@ -6,8 +6,13 @@ export type TabButtonProps = {
   onClick: () => void;
 };
 
-export type Product = { name: string; price: number };
-export type MockData = Record<TabMockDataType, Product[]>;
+export type Product = {
+  id: string;
+  name: string;
+  price: number;
+  isSignature: boolean;
+};
+export type MenuListType = Record<TabMockDataType, Product[]>;
 
 export type NavigationProps = {
   selectedTab: TabMockDataType | "";

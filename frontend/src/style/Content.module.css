@@ -1,13 +1,15 @@
 .content {
+  position: relative;
   width: 100%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  overflow: auto; /* 수정 */
+  overflow: auto;
   box-sizing: border-box;
   padding: 100px;
 }
-.menuWrapper {
+
+.menuList {
   display: grid;
   grid-gap: 60px;
   justify-content: center;
@@ -16,6 +18,7 @@
 }
 
 .menu {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +30,50 @@
   width: 60%;
 }
 
-.menu div {
+.modalMenu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  border: 1px solid black;
+}
+
+.menuOptions {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuOptions .option {
+  display: flex;
+  margin: 10px 0;
+}
+
+.menuOptions .optionButton {
+  height: 80px;
+  border-radius: 10px;
+  /* background: #ff9500; */
+  background: #c3c3c3;
+  color: white;
+  flex: 1;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.modalMenu img {
+  width: 60%;
+}
+
+.menu .modalTextDiv {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.menu .textDiv {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -37,4 +83,87 @@
 
 .logoImg {
   width: 100%;
+}
+
+.modal {
+  overflow: visible;
+  font-size: 30px;
+  width: 1000px;
+  height: 600px;
+  border: 1px;
+  border-radius: 20px;
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.closeButton {
+  width: 60px;
+  width: 60px;
+  overflow: none;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -30px;
+  right: -20px;
+  font-size: 50px;
+  border-radius: 50%;
+  background: white;
+}
+
+.modalContent {
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent button {
+  font-size: 40px;
+  border: none;
+  background: none;
+}
+
+.counter {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.countNumber {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addButton {
+  width: 100%;
+  font-size: 50px;
+  color: white;
+  /* background: #e22146; */
+  background: #c3c3c3;
+  border: none;
+  cursor: pointer;
+}
+
+.signature {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  background: #ffbd16;
+  top: -40px;
+  left: -30px;
 }
