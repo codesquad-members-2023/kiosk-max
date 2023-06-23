@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class PaymentController {
-
 	private final PaymentService paymentService;
 
 	@GetMapping("/api/payments")
@@ -19,5 +18,4 @@ public class PaymentController {
 		return ResponseEntity.ok()
 			.body(new PaymentsResponse(paymentService.getPayments()));
 	}
-
 }
