@@ -22,7 +22,7 @@ public class CategoryService {
 			.map(category -> CategoryResponse.from(category.getId(), category.getName()))
 			.collect(Collectors.toList());
 
-		if(categories.isEmpty()) {
+		if (categories.isEmpty()) {
 			throw new BusinessException(ErrorCode.DATABASE_CONNECTION_FAILED);
 		}
 

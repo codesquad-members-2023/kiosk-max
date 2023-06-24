@@ -15,19 +15,12 @@ import lombok.RequiredArgsConstructor;
 @Repository
 public class CategoryRepository {
 	private final NamedParameterJdbcTemplate jdbcTemplate;
-	private final RowMapper<Category> categoryRowMapper = ((rs, rowNum) -> new Category(
-		rs.getInt("id"),
-		rs.getString("name")
-	));
+	private final RowMapper<Category> categoryRowMapper = ((rs, rowNum) -> new Category(rs.getInt("id"),
+		rs.getString("name")));
 
 	public List<Category> findAll() {
 		try {
-			return Collections.unmodifiableList(
-				jdbcTemplate.query(
-					"SELECT * FROM category",
-					categoryRowMapper
-				)
-			);
+			return Collections.unmodifiableList(jdbcTemplate.query("SELECT * FROM category", categoryRowMapper));
 		} catch (EmptyResultDataAccessException e) {
 			return List.of();
 		}

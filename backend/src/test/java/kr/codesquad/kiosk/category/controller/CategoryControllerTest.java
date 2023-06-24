@@ -39,7 +39,7 @@ class CategoryControllerTest {
 
 		// when & then
 		mockMvc.perform(
-			get("/api/categories")
+				get("/api/categories")
 			)
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.length()").value(response.size()))

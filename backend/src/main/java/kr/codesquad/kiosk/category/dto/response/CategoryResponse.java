@@ -1,6 +1,6 @@
 package kr.codesquad.kiosk.category.dto.response;
 
-public record CategoryResponse (
+public record CategoryResponse(
 	Integer id,
 	String name
 ) {
