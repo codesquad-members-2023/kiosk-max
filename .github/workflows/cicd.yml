@@ -1,9 +1,11 @@
 name: ci-cd
 
 on:
+  push:
   pull_request:
     branches:
       - release
+      - backend
 
 env:
   working-directory: ./backend
