@@ -20,7 +20,7 @@ public class CategoryRepository {
 
 	public List<Category> findAll() {
 		try {
-			return Collections.unmodifiableList(jdbcTemplate.query("SELECT * FROM category", categoryRowMapper));
+			return Collections.unmodifiableList(jdbcTemplate.query("SELECT id, name FROM category", categoryRowMapper));
 		} catch (EmptyResultDataAccessException e) {
 			return List.of();
 		}

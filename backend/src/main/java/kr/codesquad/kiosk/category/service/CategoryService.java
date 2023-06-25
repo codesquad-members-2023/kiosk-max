@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.codesquad.kiosk.category.dto.response.CategoryResponse;
 import kr.codesquad.kiosk.category.repository.CategoryRepository;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class CategoryService {
 	private final CategoryRepository categoryRepository;
 
+	@Transactional(readOnly = true)
 	public List<CategoryResponse> getAllCategories() {
 		List<CategoryResponse> categories = categoryRepository.findAll()
 			.stream()

@@ -7,6 +7,7 @@ import static org.mockito.BDDMockito.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,13 +42,19 @@ class CategoryServiceTest {
 		List<CategoryResponse> actualResponse = categoryService.getAllCategories();
 
 		// then
-		assertThat(actualResponse).isNotNull();
-		assertThat(actualResponse).hasSize(categories.size());
+		SoftAssertions softAssertions = new SoftAssertions();
+		softAssertions.assertThat(actualResponse)
+			.isNotNull()
+			.hasSize(categories.size());
 
 		List<CategoryResponse> expectedResponse = categories.stream()
 			.map(category -> CategoryResponse.from(category.getId(), category.getName()))
 			.collect(Collectors.toList());
-		assertThat(actualResponse).containsExactlyElementsOf(expectedResponse);
+
+		softAssertions.assertThat(actualResponse)
+			.containsExactlyElementsOf(expectedResponse);
+
+		softAssertions.assertAll();
 	}
 
 	@DisplayName("카테고리 목록을 조회했을 때 목록이 비어있는 경우 DATABASE_UNAVAILABLE 에러가 발생한다.")
