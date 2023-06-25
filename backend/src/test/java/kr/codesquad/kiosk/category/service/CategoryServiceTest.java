@@ -67,7 +67,7 @@ class CategoryServiceTest {
 		assertAll(
 			() -> assertThatThrownBy(() -> categoryService.getAllCategories()).isInstanceOf(BusinessException.class)
 				.extracting("errorCode")
-				.isEqualTo(ErrorCode.DATABASE_CONNECTION_FAILED),
+				.isEqualTo(ErrorCode.EMPTY_RESULT),
 			() -> then(categoryRepository).should(times(1)).findAll());
 	}
 }

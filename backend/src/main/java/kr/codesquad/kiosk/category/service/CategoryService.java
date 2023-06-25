@@ -25,7 +25,7 @@ public class CategoryService {
 			.collect(Collectors.toList());
 
 		if (categories.isEmpty()) {
-			throw new BusinessException(ErrorCode.DATABASE_CONNECTION_FAILED);
+			throw new BusinessException(ErrorCode.EMPTY_RESULT);
 		}
 
 		return categories;

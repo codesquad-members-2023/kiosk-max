@@ -51,7 +51,7 @@ class CategoryControllerTest {
 	@Test
 	void whenGetAllCategories_thenResponse500ConnectionError() throws Exception {
 		// given
-		when(categoryService.getAllCategories()).thenThrow(new BusinessException(ErrorCode.DATABASE_CONNECTION_FAILED));
+		when(categoryService.getAllCategories()).thenThrow(new BusinessException(ErrorCode.EMPTY_RESULT));
 
 		// when & then
 		mockMvc.perform(
@@ -59,6 +59,6 @@ class CategoryControllerTest {
 			)
 			.andDo(print())
 			.andExpect(status().isInternalServerError())
-			.andExpect(jsonPath("$.message").value(ErrorCode.DATABASE_CONNECTION_FAILED.getDescription()));
+			.andExpect(jsonPath("$.message").value(ErrorCode.EMPTY_RESULT.getDescription()));
 	}
 }
