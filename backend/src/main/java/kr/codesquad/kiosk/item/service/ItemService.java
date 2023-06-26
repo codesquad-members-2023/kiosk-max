@@ -1,6 +1,6 @@
 package kr.codesquad.kiosk.item.service;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +26,7 @@ public class ItemService {
 		Item item = itemRepository.findById(itemId)
 			.orElseThrow(() -> new BusinessException(ErrorCode.ITEM_NOT_FOUND));
 
-		Map<String, List<OptionsResponse>> options = new HashMap<>();
+		Map<String, List<OptionsResponse>> options = new LinkedHashMap<>();
 		for (Map.Entry<String, List<Options>> entry : itemRepository.findOptionsByItemId(itemId).entrySet()) {
 			options.put(
 				entry.getKey(), entry.getValue().stream().map(OptionsResponse::from).toList()

@@ -1,7 +1,7 @@
 package kr.codesquad.kiosk.item.repository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -66,7 +66,7 @@ public class ItemRepository {
 	}
 
 	private Map<String, List<Options>> createOptionMap(List<ItemOptionDto> itemOptionDtos) {
-		Map<String, List<Options>> map = new HashMap<>();
+		Map<String, List<Options>> map = new LinkedHashMap<>();
 		itemOptionDtos.forEach(itemOption -> map.merge(itemOption.optionTypeName,
 			List.of(new Options(itemOption.optionId, itemOption.optionName)),
 			(v1, v2) -> {
