@@ -4,6 +4,6 @@ public record OrdersResponse(
 		String payments,
 		Integer amount,
 		Integer total,
-		Integer change
+		Integer remain
 ) {
 }

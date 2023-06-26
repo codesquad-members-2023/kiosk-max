@@ -48,7 +48,7 @@ class OrderControllerTest {
 				.andExpect(jsonPath("$.payments").exists())
 				.andExpect(jsonPath("$.amount").exists())
 				.andExpect(jsonPath("$.total").exists())
-				.andExpect(jsonPath("$.change").exists())
+				.andExpect(jsonPath("$.remain").exists())
 				.andDo(print());
 	}
 

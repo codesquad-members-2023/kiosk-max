@@ -38,7 +38,7 @@ public class OrderRepository {
 	}
 
 	public List<OrderItemResponse> findOrderItemResponsesByOrderId(Integer orderId) {
-		return jdbcTemplate.query("SELECT i.name, oi.item_quantity " +
+		return jdbcTemplate.query("SELECT i.name, oi.item_quantity, oi.price AS price " +
 						"FROM orders o " +
 						"JOIN order_item oi ON o.id = oi.orders_id " +
 						"JOIN item i ON oi.item_id = i.id " +
@@ -46,7 +46,8 @@ public class OrderRepository {
 				Map.of("orderId", orderId),
 				(rs, rowNum) -> new OrderItemResponse(
 						rs.getString("name"),
-						rs.getInt("item_quantity")
+						rs.getInt("item_quantity"),
+						rs.getInt("price")
 				));
 	}
 }

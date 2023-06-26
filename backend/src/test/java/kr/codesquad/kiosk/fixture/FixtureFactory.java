@@ -57,6 +57,6 @@ public class FixtureFactory {
 	}
 
 	public static OrderItemResponse createOrderItemResponse() {
-		return new OrderItemResponse("콜드브루", 2);
+		return new OrderItemResponse("콜드브루", 2, 10000);
 	}
 }

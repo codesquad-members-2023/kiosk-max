@@ -48,11 +48,11 @@ class OrderServiceTest {
 
 		// then
 		SoftAssertions.assertSoftly(softAssertions -> {
-			softAssertions.assertThat(receipt.items()).isEqualTo(List.of(new OrderItemResponse("콜드브루", 2)));
+			softAssertions.assertThat(receipt.items()).isEqualTo(List.of(new OrderItemResponse("콜드브루", 2, 10000)));
 			softAssertions.assertThat(receipt.payments()).isEqualTo("card");
 			softAssertions.assertThat(receipt.amount()).isEqualTo(10000);
 			softAssertions.assertThat(receipt.total()).isEqualTo(10000);
-			softAssertions.assertThat(receipt.change()).isEqualTo(0);
+			softAssertions.assertThat(receipt.remain()).isEqualTo(0);
 		});
 	}
 

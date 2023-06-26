@@ -10,7 +10,7 @@ public record OrderReceiptResponse(
 		String payments,
 		Integer amount,
 		Integer total,
-		Integer change
+		Integer remain
 ) {
 	public static OrderReceiptResponse from(List<OrderItemResponse> items, OrdersResponse ordersResponse) {
 		return new OrderReceiptResponse(
@@ -18,7 +18,7 @@ public record OrderReceiptResponse(
 				ordersResponse.payments(),
 				ordersResponse.amount(),
 				ordersResponse.total(),
-				ordersResponse.change()
+				ordersResponse.remain()
 		);
 	}
 }
