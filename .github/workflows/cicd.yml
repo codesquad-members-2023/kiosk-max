@@ -23,7 +23,8 @@ jobs:
     defaults:
       run:
         shell: bash
-
+        working-directory: ./backend
+    
     steps:
 
       # 0. Source 단계
