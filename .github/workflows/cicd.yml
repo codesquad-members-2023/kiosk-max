@@ -1,7 +1,6 @@
 name: ci-cd
 
 on:
-  push:
   pull_request:
     branches:
       - release
@@ -24,7 +23,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./backend
 
     steps:
 
@@ -51,14 +49,14 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean build -x test
+        run: ./gradlew clean build
 
         # 3. S3에 파일 업로드(zip 으로 압축 → AWS 권한 부여 → S3로 전송)
         # 3.1 zip 으로 압축
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .
 
-        # 3.1 AWS 권한 부여
+        # 3.2 AWS 권한 부여
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -68,7 +66,7 @@ jobs:
 
         # 3.3 S3로 전송
       - name: Upload to S3
-        run: aws s3 cp
+        run: aws s3 sync
           --region '${{ env.AWS_REGION }}' ./$GITHUB_SHA.zip
           s3://$S3_BUCKET_NAME/Build/$GITHUB_SHA.zip
 
