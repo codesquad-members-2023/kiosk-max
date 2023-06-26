@@ -52,8 +52,12 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
 
-        # 3. S3에 파일 업로드(AWS 권한 부여 → S3로 전체 폴더 전송)
-        # 3.1 AWS 권한 부여
+        # 3. S3에 파일 업로드(zip 으로 압축 → AWS 권한 부여 → S3로 전송)
+        # 3.1 zip 으로 압축
+      - name: Make zip file
+        run: zip -r build.zip build
+
+        # 3.2 AWS 권한 부여
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -61,7 +65,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_PRIVATE_ACCESS_KEY }}
           aws-region: ${{env.AWS_REGION}}
 
-        # 3.2 S3로 전송
+        # 3.3 S3로 전송
       - name: Upload to S3
         run: aws s3 sync
           --region '${{ env.AWS_REGION }}'
@@ -73,4 +77,4 @@ jobs:
           --application-name $CODE_DEPLOY_APPLICATION_NAME
           --deployment-config-name CodeDeployDefault.AllAtOnce
           --deployment-group-name $CODE_DEPLOY_DEPLOYMENT_GROUP_NAME
-          --s3-location bucket=$S3_BUCKET_NAME
+          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=Build
