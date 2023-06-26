@@ -1,9 +1,6 @@
+import { categories } from "../mockData";
 import styles from "../style/Navigation.module.css";
-import {
-  NavigationProps,
-  TabButtonProps,
-  TabMockDataType,
-} from "../utils/types";
+import { NavigationProps, TabButtonProps } from "../utils/types";
 
 const TabButton = ({ selectedTab, label, onClick }: TabButtonProps) => {
   const className = `${styles.tabButton} ${
@@ -21,13 +18,7 @@ export const Navigation = ({
   selectedTab,
   handleTabClick,
 }: NavigationProps) => {
-  const mockData: TabMockDataType[] = [
-    "커피",
-    "라떼",
-    "티",
-    "쥬스",
-    "디카페인",
-  ];
+  const mockData = categories;
 
   return (
     <div className={styles.navigation}>
