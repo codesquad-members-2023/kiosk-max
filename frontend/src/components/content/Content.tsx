@@ -5,10 +5,11 @@ import { MenuItem, menuDetails, menuList } from "../../mockData";
 import { SelectModal } from "./SelectModal";
 
 interface ContentProps {
+  setBasketList: React.Dispatch<React.SetStateAction<any[]>>;
   selectedTab: TabMockDataType | "";
 }
 
-export const Content = ({ selectedTab }: ContentProps) => {
+export const Content = ({ setBasketList, selectedTab }: ContentProps) => {
   const mockData: MenuListType = menuList;
   const [currentData, setCurrentData] = useState<Product[]>([]);
 
@@ -25,7 +26,7 @@ export const Content = ({ selectedTab }: ContentProps) => {
       {currentData.length === 0 ? (
         <Logo />
       ) : (
-        <MenuList currentData={currentData} />
+        <MenuList currentData={currentData} setBasketList={setBasketList} />
       )}
     </div>
   );
@@ -41,7 +42,13 @@ const Logo = () => {
   );
 };
 
-const MenuList = ({ currentData }: { currentData: Product[] }) => {
+const MenuList = ({
+  currentData,
+  setBasketList,
+}: {
+  currentData: Product[];
+  setBasketList: React.Dispatch<React.SetStateAction<any[]>>;
+}) => {
   const detailMockData = menuDetails;
 
   const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
@@ -68,6 +75,7 @@ const MenuList = ({ currentData }: { currentData: Product[] }) => {
       {isModalOpen ? (
         <SelectModal
           modalData={modalData as MenuItem}
+          setBasketList={setBasketList}
           setIsModalOpen={setIsModalOpen}
           dialogRef={dialogRef}
         />

@@ -5,12 +5,14 @@ import styles from "../../style/Content.module.css";
 type SelectModalType = {
   modalData: MenuItem;
   setIsModalOpen: (value: Boolean) => void;
+  setBasketList: React.Dispatch<React.SetStateAction<any[]>>;
   dialogRef: React.RefObject<HTMLDialogElement>;
 };
 
 export const SelectModal = ({
   modalData,
   setIsModalOpen,
+  setBasketList,
   dialogRef,
 }: SelectModalType) => {
   const [menuCount, setMenuCount] = useState(1);
@@ -47,7 +49,34 @@ export const SelectModal = ({
   };
 
   const handleAddButton = () => {
-    console.log(menuCount, selectedOptions);
+    const obj = {
+      id: modalData.id,
+      name: modalData.name,
+      price: modalData.price,
+      count: menuCount,
+      image: modalData.image,
+      options: selectedOptions,
+    };
+
+    setBasketList((prev) => {
+      const itemIndex = prev.findIndex(
+        (item) =>
+          item.id === obj.id &&
+          JSON.stringify(item.options) === JSON.stringify(obj.options)
+      );
+
+      if (itemIndex > -1) {
+        const newBasketList = [...prev];
+        const existingItem = { ...newBasketList[itemIndex] };
+        existingItem.count += obj.count;
+        newBasketList[itemIndex] = existingItem;
+        return newBasketList;
+      }
+
+      return [...prev, obj];
+    });
+
+    setIsModalOpen(false);
   };
 
   return (
