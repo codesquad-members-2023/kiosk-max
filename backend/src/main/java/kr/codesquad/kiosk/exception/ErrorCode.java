@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public enum ErrorCode {
+	ORDER_NOT_FOUND(404, "해당 주문을 찾을 수 없습니다."),
 	ITEM_NOT_FOUND(404, "해당 아이템을 찾을 수 없습니다."),
 	PAYMENTS_NOT_FOUND(404, "결제 방식을 찾을 수 없습니다.");
 
