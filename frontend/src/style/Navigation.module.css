@@ -1,0 +1,22 @@
+.navigation {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 100px;
+}
+
+.tabButton {
+  width: 33.33%;
+  height: 80px;
+  background: none;
+  flex: 0 0 auto;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.selected {
+  color: red;
+}
