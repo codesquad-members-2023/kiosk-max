@@ -4,7 +4,7 @@ import kr.codesquad.kiosk.item.domain.Options;
 
 public record OptionsResponse(
 	int id,
-	String text
+	String name
 ) {
 	public static OptionsResponse from(Options options) {
 		return new OptionsResponse(
