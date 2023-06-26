@@ -1,0 +1,65 @@
+.tab_list {
+  width: 100%;
+  height: 80px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.tab_list__wrapper {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.tab_list__li {
+  width: 230px;
+  height: 80px;
+  display: inline-block;
+}
+
+.tab_list__li:nth-child(n + 2) {
+  margin-left: 1rem;
+}
+
+.tab_list__button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 1px 1px 1px gray;
+  box-sizing: border-box;
+  cursor: pointer;
+  opacity: 0.4;
+  border: 8px double rgba(255, 255, 255, 0.2);
+  transition: border 250ms;
+}
+.tab_list__button[data-active="true"] {
+  opacity: 1;
+  border: 12px double rgba(255, 255, 255, 0.6);
+}
+
+.tabs__button:hover,
+.tabs__button:focus,
+.tabs__button:active {
+  opacity: 1;
+}
+
+.tab_list__li[data-index="0"] .tab_list__button {
+  background-color: #d35400;
+}
+.tab_list__li[data-index="1"] .tab_list__button {
+  background-color: #e67e22;
+}
+.tab_list__li[data-index="2"] .tab_list__button {
+  background-color: #2ecc71;
+}
+.tab_list__li[data-index="3"] .tab_list__button {
+  background-color: #f1c40f;
+}
+.tab_list__li[data-index="4"] .tab_list__button {
+  background-color: #3498db;
+}

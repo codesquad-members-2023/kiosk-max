@@ -1,0 +1,11 @@
+#panel {
+  width: 100%;
+}
+
+.panel_coffee {
+  background-color: lightcoral;
+}
+
+.panel__inner {
+  width: 100%;
+}

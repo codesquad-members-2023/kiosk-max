@@ -1,0 +1,23 @@
+.modal {
+  min-width: 520px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal__cancel_button {
+  width: 40px;
+  height: 40px;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid gray;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transform: translate(50%, -50%);
+}
