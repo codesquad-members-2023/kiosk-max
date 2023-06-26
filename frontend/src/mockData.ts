@@ -153,7 +153,8 @@ export const menuDetails: MenuDetails = {
     price: 4000,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -165,7 +166,8 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -177,7 +179,8 @@ export const menuDetails: MenuDetails = {
     price: 3000,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -189,7 +192,8 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -201,7 +205,8 @@ export const menuDetails: MenuDetails = {
     price: 4000,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -213,7 +218,8 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -225,7 +231,8 @@ export const menuDetails: MenuDetails = {
     price: 3000,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -237,7 +244,8 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -249,7 +257,8 @@ export const menuDetails: MenuDetails = {
     price: 4000,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -261,7 +270,8 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -273,7 +283,8 @@ export const menuDetails: MenuDetails = {
     price: 3000,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -285,7 +296,8 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -297,7 +309,8 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -309,7 +322,8 @@ export const menuDetails: MenuDetails = {
     price: 5500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -321,7 +335,8 @@ export const menuDetails: MenuDetails = {
     price: 6500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -333,7 +348,8 @@ export const menuDetails: MenuDetails = {
     price: 7500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -345,7 +361,8 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -357,7 +374,8 @@ export const menuDetails: MenuDetails = {
     price: 5500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -369,7 +387,8 @@ export const menuDetails: MenuDetails = {
     price: 6500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -381,7 +400,8 @@ export const menuDetails: MenuDetails = {
     price: 7500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -393,7 +413,8 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -405,7 +426,8 @@ export const menuDetails: MenuDetails = {
     price: 5500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -417,7 +439,8 @@ export const menuDetails: MenuDetails = {
     price: 6500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -429,7 +452,8 @@ export const menuDetails: MenuDetails = {
     price: 7500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
       temperature: ["hot", "ice"],
@@ -441,10 +465,11 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티2_1: {
@@ -453,10 +478,11 @@ export const menuDetails: MenuDetails = {
     price: 5500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티3_2: {
@@ -465,10 +491,11 @@ export const menuDetails: MenuDetails = {
     price: 6500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티4_3: {
@@ -477,10 +504,11 @@ export const menuDetails: MenuDetails = {
     price: 7500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티5_4: {
@@ -489,10 +517,11 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티6_5: {
@@ -501,10 +530,11 @@ export const menuDetails: MenuDetails = {
     price: 5500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티7_6: {
@@ -513,10 +543,11 @@ export const menuDetails: MenuDetails = {
     price: 6500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티8_7: {
@@ -525,10 +556,11 @@ export const menuDetails: MenuDetails = {
     price: 7500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티9_8: {
@@ -537,10 +569,11 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티10_9: {
@@ -549,10 +582,11 @@ export const menuDetails: MenuDetails = {
     price: 5500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티11_10: {
@@ -561,10 +595,11 @@ export const menuDetails: MenuDetails = {
     price: 6500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   아이스티12_11: {
@@ -573,10 +608,11 @@ export const menuDetails: MenuDetails = {
     price: 7500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스1_0: {
@@ -585,10 +621,11 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스2_1: {
@@ -597,10 +634,11 @@ export const menuDetails: MenuDetails = {
     price: 5500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스3_2: {
@@ -609,10 +647,11 @@ export const menuDetails: MenuDetails = {
     price: 6500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스4_3: {
@@ -621,10 +660,11 @@ export const menuDetails: MenuDetails = {
     price: 7500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스5_4: {
@@ -633,10 +673,11 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스6_5: {
@@ -645,10 +686,11 @@ export const menuDetails: MenuDetails = {
     price: 5500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스7_6: {
@@ -657,10 +699,11 @@ export const menuDetails: MenuDetails = {
     price: 6500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스8_7: {
@@ -669,10 +712,11 @@ export const menuDetails: MenuDetails = {
     price: 7500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스9_8: {
@@ -681,10 +725,11 @@ export const menuDetails: MenuDetails = {
     price: 4500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스10_9: {
@@ -693,10 +738,11 @@ export const menuDetails: MenuDetails = {
     price: 5500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스11_10: {
@@ -705,10 +751,11 @@ export const menuDetails: MenuDetails = {
     price: 6500,
     isSignature: true,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
   딸기쥬스12_11: {
@@ -717,10 +764,11 @@ export const menuDetails: MenuDetails = {
     price: 7500,
     isSignature: false,
     description: "",
-    image: "{url}",
+    image:
+      "https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png",
     options: {
       size: ["big", "medium", "small"],
-      temperature: ["hot", "ice"],
+      temperature: ["ice"],
     },
   },
 };

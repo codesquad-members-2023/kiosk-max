@@ -64,7 +64,7 @@
 }
 
 .optionRadio[type="radio"]:checked + .optionButton {
-  background: #ff9500;
+  background: #ff7d37;
 }
 
 .optionRadio {
@@ -153,7 +153,7 @@
   height: 100px;
   font-size: 50px;
   color: white;
-  background: #ff9500;
+  background: #ff7d37;
   border: none;
   cursor: pointer;
 }
