@@ -1,5 +1,4 @@
-export type TabMockDataType = "커피" | "라떼" | "티" | "쥬스" | "디카페인";
-
+export type TabMockDataType = string;
 export type TabButtonProps = {
   selectedTab: TabMockDataType | "";
   label: string;
@@ -13,8 +12,3 @@ export type Product = {
   isSignature: boolean;
 };
 export type MenuListType = Record<TabMockDataType, Product[]>;
-
-export type NavigationProps = {
-  selectedTab: TabMockDataType | "";
-  handleTabClick: (label: TabMockDataType) => void;
-};
