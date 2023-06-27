@@ -8,7 +8,7 @@ on:
 
 env:
   working-directory: ./backend
-  APPLICATION_PROPERTIES_FILE_PATH: ./src/main/resources/application.yml
+  APPLICATION_PROPERTIES_FILE_PATH: ./src/main/resources/application-prod.yml
   AWS_REGION: ap-northeast-2
   S3_BUCKET_NAME: kiosk-team01-actions-bucket
   CODE_DEPLOY_APPLICATION_NAME: kiosk-codedeploy-app
