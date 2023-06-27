@@ -9,7 +9,7 @@ echo "> Build 파일 복사" >> $DEPLOY_LOG
 cp $REPOSITORY/build/libs/*.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 PID 확인" >> $DEPLOY_LOG
-CURRENT_PID=$(pgrep -fl kiosk | grep jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fl backend | grep jar | awk '{print $1}')
 
 echo "> 현재 구동중인 애플리케이션 PID: $CURRENT_PID" >> $DEPLOY_LOG
 
