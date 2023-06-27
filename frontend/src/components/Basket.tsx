@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "../style/Basket.module.css";
+import { Indicator, PaymentModal } from "./PaymentModal";
 
 interface Options {
   [key: string]: string;
 }
 
-interface MenuItem {
+export interface basketList {
   id: string;
   name: string;
   price: number;
@@ -14,22 +15,36 @@ interface MenuItem {
   options: Options;
 }
 
-interface BasketList {
-  basketList: MenuItem[];
+interface BasketProps {
+  basketList: basketList[];
   setBasketList: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-export const Basket = ({ basketList, setBasketList }: BasketList) => {
-  const second = 30;
+export const Basket = ({ basketList, setBasketList }: BasketProps) => {
+  const second = 300000;
   const [timer, setTimer] = useState(second);
+  const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
+  const [isPaying, setIsPaying] = useState<Boolean>(false);
+  const [isIndicating, setIsIndicating] = useState<Boolean>(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    const timerInterval = setInterval(() => setTimer((prev) => prev - 1), 1000);
+    const timerInterval = setInterval(
+      () =>
+        setTimer((prev) => {
+          if (!isPaying) {
+            return prev - 1;
+          }
+
+          return prev;
+        }),
+      1000
+    );
 
     return () => {
       clearInterval(timerInterval);
     };
-  }, []);
+  }, [isPaying]);
 
   useEffect(() => {
     if (timer <= 0) {
@@ -41,12 +56,33 @@ export const Basket = ({ basketList, setBasketList }: BasketList) => {
     setTimer(second);
   }, [basketList]);
 
+  useEffect(() => {
+    if (isModalOpen) {
+      dialogRef.current?.showModal();
+    }
+  }, [isModalOpen]);
+
   const allCancel = () => {
     setBasketList([]);
   };
 
-  const payment = () => {
-    console.log(basketList);
+  const cancelPayment = () => {
+    setIsPaying(false);
+    closeModal();
+  };
+
+  const closeModal = () => {
+    dialogRef.current?.close();
+    setIsModalOpen(false);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    setIsPaying(true);
+  };
+
+  const showIndicator = () => {
+    setIsIndicating(true);
   };
 
   return (
@@ -90,10 +126,20 @@ export const Basket = ({ basketList, setBasketList }: BasketList) => {
           </button>
         </div>
 
-        <button className={styles.paymentButton} onClick={payment}>
+        <button className={styles.paymentButton} onClick={openModal}>
           결제하기
         </button>
       </div>
+      {isModalOpen && (
+        <PaymentModal
+          dialogRef={dialogRef}
+          closeModal={closeModal}
+          cancelPayment={cancelPayment}
+          showIndicator={showIndicator}
+          basketList={basketList}
+        />
+      )}
+      {isIndicating && <Indicator />}
     </div>
   );
 };
@@ -102,7 +148,7 @@ const BasketItem = ({
   item,
   setBasketList,
 }: {
-  item: MenuItem;
+  item: basketList;
   setBasketList: React.Dispatch<React.SetStateAction<any[]>>;
 }) => {
   const [menuCount, setMenuCount] = useState(item.count);

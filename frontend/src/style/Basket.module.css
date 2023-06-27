@@ -4,10 +4,6 @@
   min-height: 550px;
 }
 
-.basket img {
-  width: 40%;
-}
-
 .item {
   display: flex;
 }
