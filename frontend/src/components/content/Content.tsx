@@ -6,20 +6,20 @@ import { SelectModal } from "./SelectModal";
 
 interface ContentProps {
   setBasketList: React.Dispatch<React.SetStateAction<any[]>>;
-  selectedTab: TabMockDataType | "";
+  categoryId: number;
 }
 
-export const Content = ({ setBasketList, selectedTab }: ContentProps) => {
+export const Content = ({ setBasketList, categoryId }: ContentProps) => {
   const mockData: MenuListType = menuList;
   const [currentData, setCurrentData] = useState<Product[]>([]);
 
   useEffect(() => {
-    if (selectedTab === "") {
+    if (categoryId === 0) {
       return;
     }
 
-    setCurrentData(mockData[selectedTab]);
-  }, [selectedTab]);
+    setCurrentData(mockData[categoryId]);
+  }, [categoryId]);
 
   return (
     <div className={styles.content}>
