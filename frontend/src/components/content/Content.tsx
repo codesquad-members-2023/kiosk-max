@@ -69,7 +69,7 @@ const MenuList = ({
   return (
     <div className={styles.menuList}>
       {currentData.map((item, index) => (
-        <Menu key={index} item={item} handler={handleMenuClick} />
+        <Menu key={index} item={item} onClick={() => handleMenuClick(item)} />
       ))}
 
       {isModalOpen ? (
@@ -86,15 +86,9 @@ const MenuList = ({
   );
 };
 
-const Menu = ({
-  handler,
-  item,
-}: {
-  handler: (item: Product) => void;
-  item: Product;
-}) => {
+const Menu = ({ onClick, item }: { onClick: () => void; item: Product }) => {
   return (
-    <div className={styles.menu} key={item.name} onClick={() => handler(item)}>
+    <div className={styles.menu} key={item.name} onClick={onClick}>
       {item.isSignature ? <div className={styles.signature}>인기</div> : ""}
       <img
         src="https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png"

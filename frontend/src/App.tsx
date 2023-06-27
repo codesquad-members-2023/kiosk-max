@@ -9,8 +9,6 @@ export const App = () => {
   const [selectedTab, setSelectedTab] = useState<TabMockDataType | "">("");
   const [basketList, setBasketList] = useState<any[]>([]);
 
-  useEffect(() => {}, [basketList]);
-
   const handleTabClick = (label: TabMockDataType | "") => {
     if (label !== selectedTab) {
       setSelectedTab(label);
