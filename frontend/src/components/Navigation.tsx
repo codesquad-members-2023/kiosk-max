@@ -1,35 +1,61 @@
-import { categories } from "../mockData";
+import { useState, useEffect } from "react";
 import styles from "../style/Navigation.module.css";
-import { NavigationProps, TabButtonProps } from "../utils/types";
 
-const TabButton = ({ selectedTab, label, onClick }: TabButtonProps) => {
-  const className = `${styles.tabButton} ${
-    label === selectedTab ? styles.selected : ""
-  }`;
+type TabMockDataType = {
+  id: number;
+  name: string;
+};
 
-  return (
-    <button className={className} onClick={onClick}>
-      {label}
-    </button>
-  );
+type TabButtonProps = {
+  selectedTab: string;
+  label: TabMockDataType;
+  onClick: () => void;
+};
+
+type NavigationProps = {
+  selectedTab: string;
+  handleTabClick: (value: string) => void;
 };
 
 export const Navigation = ({
   selectedTab,
   handleTabClick,
 }: NavigationProps) => {
-  const mockData = categories;
+  const [navigationData, setNavigationData] = useState<TabMockDataType[]>([]);
+
+  useEffect(() => {
+    const fetchNavigation = async () => {
+      const response = await fetch("http://43.201.168.11:8080/api/categories");
+      const data = await response.json();
+
+      setNavigationData(data);
+    };
+
+    fetchNavigation();
+  }, []);
 
   return (
     <div className={styles.navigation}>
-      {mockData.map((item, index) => (
+      {navigationData.map((item, index) => (
         <TabButton
           key={index}
           label={item}
           selectedTab={selectedTab}
-          onClick={() => handleTabClick(item)}
+          onClick={() => handleTabClick(item.name)}
         />
       ))}
     </div>
+  );
+};
+
+const TabButton = ({ selectedTab, label, onClick }: TabButtonProps) => {
+  const className = `${styles.tabButton} ${
+    label.name === selectedTab && styles.selected
+  }`;
+
+  return (
+    <button className={className} onClick={onClick}>
+      {label.name}
+    </button>
   );
 };

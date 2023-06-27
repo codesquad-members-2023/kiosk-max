@@ -24,7 +24,7 @@ export const categories: TabMockDataType[] = [
   "커피",
   "라떼",
   "티",
-  "쥬스",
+  "주스",
   "디카페인",
 ];
 
@@ -91,7 +91,7 @@ export const menuList = {
     { id: "아이스티11_10", name: "아이스티11", price: 6500, isSignature: true },
     { id: "아이스티12_11", name: "아이스티12", price: 7500, isSignature: true },
   ],
-  쥬스: [
+  주스: [
     { id: "딸기쥬스1_0", name: "딸기쥬스1", price: 4500, isSignature: true },
     { id: "딸기쥬스2_1", name: "딸기쥬스2", price: 5500, isSignature: true },
     { id: "딸기쥬스3_2", name: "딸기쥬스3", price: 6500, isSignature: true },
