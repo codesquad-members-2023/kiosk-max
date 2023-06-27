@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOSITORY=/home/ubuntu/app/kiosk
+REPOSITORY=/home/ubuntu/app
 PROJECT_NAME=backend
 
 echo "> Build 파일 복사"
@@ -13,9 +13,9 @@ CURRENT_PID=$(pgrep -fl kiosk | grep jar | awk '{print $1}')
 echo "> 현재 구동중인 애플리케이션 PID: $CURRENT_PID"
 
 if [ -z "$CURRENT_PID" ]; then
-echo "> 현재 구동 중인 애플리케이션이 없어 종료하지 않습니다."
+  echo "> 현재 구동 중인 애플리케이션이 없어 종료하지 않습니다."
 else
-echo "> kill -15 $CURRENT_PID"
+  echo "> kill -15 $CURRENT_PID"
 kill -15 $CURRENT_PID
 sleep 5
 fi
@@ -30,6 +30,6 @@ chmod +x $JAR_NAME
 
 echo "> $JAR_NAME 실행"
 
-nohup java -jar -DSpring.config.location=classpath:/application.yml $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+nohup java -jar -DSpring.config.location=classpath:/application.yml -Dspring.profiles.active=prod $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
 
 echo "배포 완료!"
