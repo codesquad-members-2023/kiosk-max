@@ -7,27 +7,24 @@ type TabMockDataType = {
 };
 
 type TabButtonProps = {
-  selectedTab: string;
+  categoryId: number;
   label: TabMockDataType;
   onClick: () => void;
 };
 
 type NavigationProps = {
-  selectedTab: string;
-  handleTabClick: (value: string) => void;
+  categoryId: number;
+  handleTabClick: (id: number) => void;
 };
 
-export const Navigation = ({
-  selectedTab,
-  handleTabClick,
-}: NavigationProps) => {
+export const Navigation = ({ categoryId, handleTabClick }: NavigationProps) => {
   const [navigationData, setNavigationData] = useState<TabMockDataType[]>([]);
 
   useEffect(() => {
     const fetchNavigation = async () => {
       const response = await fetch("http://43.201.168.11:8080/api/categories");
       const data = await response.json();
-
+      console.log(data);
       setNavigationData(data);
     };
 
@@ -40,17 +37,17 @@ export const Navigation = ({
         <TabButton
           key={index}
           label={item}
-          selectedTab={selectedTab}
-          onClick={() => handleTabClick(item.name)}
+          categoryId={categoryId}
+          onClick={() => handleTabClick(item.id)}
         />
       ))}
     </div>
   );
 };
 
-const TabButton = ({ selectedTab, label, onClick }: TabButtonProps) => {
+const TabButton = ({ categoryId, label, onClick }: TabButtonProps) => {
   const className = `${styles.tabButton} ${
-    label.name === selectedTab && styles.selected
+    label.id === categoryId && styles.selected
   }`;
 
   return (

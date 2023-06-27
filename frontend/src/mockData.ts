@@ -29,7 +29,7 @@ export const categories: TabMockDataType[] = [
 ];
 
 export const menuList = {
-  커피: [
+  1: [
     { id: "아메리카노_0", name: "아메리카노", price: 4000, isSignature: true },
     { id: "콜드브루_1", name: "콜드브루", price: 4500, isSignature: false },
     { id: "에스프레소_2", name: "에스프레소", price: 3000, isSignature: true },
@@ -63,7 +63,7 @@ export const menuList = {
     },
     { id: "카페모카2_11", name: "카페모카2", price: 4500, isSignature: false },
   ],
-  라떼: [
+  2: [
     { id: "카페라떼1_0", name: "카페라떼1", price: 4500, isSignature: true },
     { id: "카페라떼2_1", name: "카페라떼2", price: 5500, isSignature: false },
     { id: "카페라떼3_2", name: "카페라떼3", price: 6500, isSignature: true },
@@ -77,7 +77,7 @@ export const menuList = {
     { id: "카페라떼11_10", name: "카페라떼11", price: 6500, isSignature: true },
     { id: "카페라떼12_11", name: "카페라떼12", price: 7500, isSignature: true },
   ],
-  티: [
+  3: [
     { id: "아이스티1_0", name: "아이스티1", price: 4500, isSignature: true },
     { id: "아이스티2_1", name: "아이스티2", price: 5500, isSignature: true },
     { id: "아이스티3_2", name: "아이스티3", price: 6500, isSignature: false },
@@ -91,7 +91,7 @@ export const menuList = {
     { id: "아이스티11_10", name: "아이스티11", price: 6500, isSignature: true },
     { id: "아이스티12_11", name: "아이스티12", price: 7500, isSignature: true },
   ],
-  주스: [
+  4: [
     { id: "딸기쥬스1_0", name: "딸기쥬스1", price: 4500, isSignature: true },
     { id: "딸기쥬스2_1", name: "딸기쥬스2", price: 5500, isSignature: true },
     { id: "딸기쥬스3_2", name: "딸기쥬스3", price: 6500, isSignature: true },
@@ -110,7 +110,41 @@ export const menuList = {
       isSignature: false,
     },
   ],
-  디카페인: [
+  5: [
+    { id: "아메리카노_0", name: "아메리카노", price: 4000, isSignature: true },
+    { id: "콜드브루_1", name: "콜드브루", price: 4500, isSignature: true },
+    { id: "에스프레소_2", name: "에스프레소", price: 3000, isSignature: true },
+    { id: "카페모카_3", name: "카페모카", price: 4500, isSignature: true },
+    {
+      id: "아메리카노1_4",
+      name: "아메리카노1",
+      price: 4000,
+      isSignature: true,
+    },
+    { id: "콜드브루1_5", name: "콜드브루1", price: 4500, isSignature: false },
+    {
+      id: "에스프레소1_6",
+      name: "에스프레소1",
+      price: 3000,
+      isSignature: true,
+    },
+    { id: "카페모카1_7", name: "카페모카1", price: 4500, isSignature: true },
+    {
+      id: "아메리카노2_8",
+      name: "아메리카노2",
+      price: 4000,
+      isSignature: true,
+    },
+    { id: "콜드브루2_9", name: "콜드브루2", price: 4500, isSignature: false },
+    {
+      id: "에스프레소2_10",
+      name: "에스프레소2",
+      price: 3000,
+      isSignature: true,
+    },
+    { id: "카페모카2_11", name: "카페모카2", price: 4500, isSignature: false },
+  ],
+  6: [
     { id: "아메리카노_0", name: "아메리카노", price: 4000, isSignature: true },
     { id: "콜드브루_1", name: "콜드브루", price: 4500, isSignature: true },
     { id: "에스프레소_2", name: "에스프레소", price: 3000, isSignature: true },

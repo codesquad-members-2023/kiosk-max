@@ -5,19 +5,19 @@ import { Content } from "./components/content/Content";
 import { Basket } from "./components/Basket";
 
 export const App = () => {
-  const [selectedTab, setSelectedTab] = useState<string>("");
+  const [categoryId, setCategoryID] = useState<number>(0);
   const [basketList, setBasketList] = useState<any[]>([]);
 
-  const handleTabClick = (label: string | "") => {
-    if (label !== selectedTab) {
-      setSelectedTab(label);
+  const handleTabClick = (id: number) => {
+    if (id !== categoryId) {
+      setCategoryID(id);
     }
   };
 
   return (
     <div className={styles["app"]}>
-      <Navigation selectedTab={selectedTab} handleTabClick={handleTabClick} />
-      <Content selectedTab={selectedTab} setBasketList={setBasketList} />
+      <Navigation categoryId={categoryId} handleTabClick={handleTabClick} />
+      <Content categoryId={categoryId} setBasketList={setBasketList} />
       {basketList.length > 0 ? (
         <Basket basketList={basketList} setBasketList={setBasketList} />
       ) : (
