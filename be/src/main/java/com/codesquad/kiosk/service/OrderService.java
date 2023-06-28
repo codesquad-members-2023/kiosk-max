@@ -37,6 +37,14 @@ public class OrderService {
         return amount;
     }
 
+    public CardPaymentResponseDto cardPay(OrderRequestDto orderRequestDto){
+        return new CardPaymentResponseDto(
+                orderRequestDto.getNumber(),
+                calculateOrder(orderRequestDto),
+                Boolean.TRUE
+        );
+    }
+
     public void saveOrder(OrderRequestDto orderRequestDto) {
         String now = createNowDateformat();
         Order order = orderRepository.getOrder().orElse(Order.builder().orderTime(now).orderNumber(0).build());
