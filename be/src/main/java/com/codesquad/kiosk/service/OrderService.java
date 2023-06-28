@@ -1,5 +1,7 @@
 package com.codesquad.kiosk.service;
 
+import com.codesquad.kiosk.dto.CategoryResponseDto;
+import com.codesquad.kiosk.dto.ReceiptDto;
 import com.codesquad.kiosk.domain.Order;
 import com.codesquad.kiosk.domain.OrderMenu;
 import com.codesquad.kiosk.dto.OrderNumberCreatorDto;
@@ -7,11 +9,11 @@ import com.codesquad.kiosk.dto.OrderRequestDto;
 import com.codesquad.kiosk.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
+import java.util.stream.Collectors;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 
 @Service
 @RequiredArgsConstructor
@@ -53,5 +55,8 @@ public class OrderService {
         String formattedDate = date.format(formatter);
         return formattedDate;
     }
-
+  
+    public ReceiptDto getReceiptByOrderId(Integer orderId) {
+        return orderRepository.getReceiptByOrderId(orderId);
+    }
 }
