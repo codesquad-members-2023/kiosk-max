@@ -12,4 +12,10 @@ public class OrderMenu {
     Integer orderId;
     Integer menuId;
     Integer quantity;
+
+    @Builder
+    public OrderMenu(Integer menuId, Integer quantity) {
+        this.menuId = menuId;
+        this.quantity = quantity;
+    }
 }
