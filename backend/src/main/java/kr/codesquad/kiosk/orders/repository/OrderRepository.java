@@ -61,6 +61,7 @@ public class OrderRepository {
 	}
 
 	public int save(Orders orders) {
+		orders.calculatePriceInfo(calculateTotal(orders.getOrderItems()));
 		int orderId = saveOrderAndReturnId(orders);
 
 		for (OrderItem orderItem : orders.getOrderItems()) {
@@ -86,8 +87,10 @@ public class OrderRepository {
 	}
 
 	private int saveOrderItem(OrderItem orderItem) {
-		String sql = "insert into order_item(item_quantity, price, item_id, orders_id) "
-			+ "values(:itemQuantity, :price, :itemId, :ordersId)";
+		String sql = "INSERT INTO order_item(item_quantity, price, item_id, orders_id) "
+			+ "SELECT :itemQuantity, (price * :itemQuantity), :itemId, :ordersId "
+			+ "FROM item "
+			+ "WHERE id = :itemId;";
 		SqlParameterSource sqlParameterSource = mappingOrderItemSqlParameterSource(orderItem);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -104,6 +107,21 @@ public class OrderRepository {
 		jdbcTemplate.update(sql, sqlParameterSource);
 	}
 
+	private Integer findPriceBy(int itemId) {
+		String sql = "SELECT price FROM item WHERE id = :id";
+
+		return jdbcTemplate.queryForObject(sql, Map.of("id", itemId), Integer.class);
+	}
+
+	private Integer calculateTotal(List<OrderItem> orderItems) {
+		int total = 0;
+		for (OrderItem orderItem : orderItems) {
+			total += findPriceBy(orderItem.getItemId()) * orderItem.getItemQuantity();
+		}
+
+		return total;
+	}
+
 	private SqlParameterSource mappingOrderSqlParameterSource(Orders orders) {
 		return new MapSqlParameterSource()
 			.addValue("amount", orders.getAmount())
@@ -115,7 +133,6 @@ public class OrderRepository {
 	private SqlParameterSource mappingOrderItemSqlParameterSource(OrderItem orderItem) {
 		return new MapSqlParameterSource()
 			.addValue("itemQuantity", orderItem.getItemQuantity())
-			.addValue("price", orderItem.getPrice())
 			.addValue("itemId", orderItem.getItemId())
 			.addValue("ordersId", orderItem.getOrdersId());
 	}

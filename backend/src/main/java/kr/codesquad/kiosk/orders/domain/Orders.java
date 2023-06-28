@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import kr.codesquad.kiosk.orderitem.domain.OrderItem;
+import kr.codesquad.kiosk.payment.domain.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,4 +21,14 @@ public class Orders {
 	private int paymentId;
 
 	private List<OrderItem> orderItems;
+
+	public void calculatePriceInfo(int total) {
+		if (paymentId != PaymentType.CASH_PAYMENT.getId())
+			return;
+
+		this.total = total;
+		if (amount != 0 && amount >= total) {
+			remain = amount - total;
+		}
+	}
 }
