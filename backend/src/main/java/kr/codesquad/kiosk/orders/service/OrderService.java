@@ -33,8 +33,7 @@ public class OrderService {
 	}
 
 	@Transactional
-	public OrdersIdResponse createOrder(OrderReceiptRequest request) {
-		OrderResultType orderResultType = getRandomOrderResultType();
+	public OrdersIdResponse createOrder(OrderReceiptRequest request, OrderResultType orderResultType) {
 		if (orderResultType == OrderResultType.SUCCESS) {
 			return new OrdersIdResponse(
 				orderRepository.save(request.toOrders())
@@ -42,6 +41,31 @@ public class OrderService {
 		}
 
 		throw getBusinessException(orderResultType);
+	}
+
+	@Transactional
+	public OrdersIdResponse createOrderWithDelayAndRandomSucceed(OrderReceiptRequest request) {
+		causePaymentDelay();
+		return createOrder(request, getRandomOrderResultType());
+	}
+
+	/**
+	 * 현재 사용하지 않는 메서드입니다.
+	 * 백엔드단에서 지연 응답을 구현한 것을 프론트엔드단에서 처리하지 못할 경우 사용될 예정입니다.
+	 */
+	@Transactional
+	public OrdersIdResponse createOrderWithNonDelayAndRandomSucceed(OrderReceiptRequest request) {
+		return createOrder(request, getRandomOrderResultType());
+	}
+
+	@Transactional
+	public OrdersIdResponse createOrderWithNonDelayAndAlwaysSucceed(OrderReceiptRequest request) {
+		return createOrder(request, OrderResultType.SUCCESS);
+	}
+
+	@Transactional
+	public OrdersIdResponse createOrderWithNonDelayAndAlwaysFail(OrderReceiptRequest request) {
+		return createOrder(request, OrderResultType.NETWORK_ERROR);
 	}
 
 	private OrderResultType getRandomOrderResultType() {
@@ -71,9 +95,21 @@ public class OrderService {
 			case MAGNETIC_NOT_RECOGNIZED -> {
 				return new BusinessException(ErrorCode.MAGNETIC_NOT_RECOGNIZED_ERROR);
 			}
-			default -> {
+			case NETWORK_ERROR -> {
 				return new BusinessException(ErrorCode.NETWORK_FAIN_ERROR);
 			}
+			default -> {
+				return new BusinessException(ErrorCode.RESPONSE_DELAY_ERROR);
+			}
+		}
+	}
+
+	private void causePaymentDelay() {
+		int randomInt = random.nextInt(7) + 1;
+		try {
+			Thread.sleep(randomInt * 1000);
+		} catch (InterruptedException e) {
+			throw getBusinessException(OrderResultType.RESPONSE_DELAY);
 		}
 	}
 
