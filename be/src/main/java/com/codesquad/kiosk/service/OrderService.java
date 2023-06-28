@@ -73,6 +73,17 @@ public class OrderService {
         return orderRepository.getReceiptByOrderId(orderId);
     }
 
+    public CashPaymentResponseDto cashPayment( OrderRequestDto requestDto ) {
+        int totalPay = calculateOrder(requestDto);
+        int inputMoney = requestDto.getNumber();
+        int changes = inputMoney - totalPay;
+        return  CashPaymentResponseDto
+                .builder()
+                .totalPay(totalPay)
+                .changes(changes)
+                .result(true)
+                .build();
+
     private boolean random() {
         double failureRate = 0.1;
         return Math.random() > failureRate;
@@ -87,5 +98,6 @@ public class OrderService {
             return new PaymentFailedDto("한도초과");
         }
         return null;
+
     }
 }
