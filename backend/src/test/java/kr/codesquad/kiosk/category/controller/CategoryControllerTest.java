@@ -1,13 +1,10 @@
 package kr.codesquad.kiosk.category.controller;
 
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import java.util.List;
-
+import kr.codesquad.kiosk.category.controller.dto.response.CategoryResponse;
+import kr.codesquad.kiosk.category.service.CategoryService;
+import kr.codesquad.kiosk.exception.BusinessException;
+import kr.codesquad.kiosk.exception.ErrorCode;
+import kr.codesquad.kiosk.fixture.FixtureFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +12,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import kr.codesquad.kiosk.category.dto.response.CategoryResponse;
-import kr.codesquad.kiosk.category.service.CategoryService;
-import kr.codesquad.kiosk.exception.BusinessException;
-import kr.codesquad.kiosk.exception.ErrorCode;
-import kr.codesquad.kiosk.fixture.FixtureFactory;
+import java.util.List;
+
+import static org.hamcrest.Matchers.hasItems;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = CategoryController.class)
 class CategoryControllerTest {
@@ -39,12 +39,12 @@ class CategoryControllerTest {
 
 		// when & then
 		mockMvc.perform(
-				get("/api/categories")
-			)
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.length()").value(response.size()))
-			.andExpect(jsonPath("$[*].id").value(hasItems(response.stream().map(CategoryResponse::id).toArray())))
-			.andExpect(jsonPath("$[*].name").value(hasItems(response.stream().map(CategoryResponse::name).toArray())));
+						get("/api/categories")
+				)
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.length()").value(response.size()))
+				.andExpect(jsonPath("$[*].id").value(hasItems(response.stream().map(CategoryResponse::id).toArray())))
+				.andExpect(jsonPath("$[*].name").value(hasItems(response.stream().map(CategoryResponse::name).toArray())));
 	}
 
 	@DisplayName("카테고리 항목을 불러오지 못하면 500 Connection Error를 반환한다.")
@@ -55,10 +55,10 @@ class CategoryControllerTest {
 
 		// when & then
 		mockMvc.perform(
-				get("/api/categories")
-			)
-			.andDo(print())
-			.andExpect(status().isInternalServerError())
-			.andExpect(jsonPath("$.message").value(ErrorCode.EMPTY_RESULT.getDescription()));
+						get("/api/categories")
+				)
+				.andDo(print())
+				.andExpect(status().isInternalServerError())
+				.andExpect(jsonPath("$.message").value(ErrorCode.EMPTY_RESULT.getDescription()));
 	}
 }

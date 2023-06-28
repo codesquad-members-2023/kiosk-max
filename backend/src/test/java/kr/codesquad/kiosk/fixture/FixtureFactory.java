@@ -1,7 +1,7 @@
 package kr.codesquad.kiosk.fixture;
 
+import kr.codesquad.kiosk.category.controller.dto.response.CategoryResponse;
 import kr.codesquad.kiosk.category.domain.Category;
-import kr.codesquad.kiosk.category.dto.response.CategoryResponse;
 import kr.codesquad.kiosk.item.controller.dto.response.ItemDetailsResponse;
 import kr.codesquad.kiosk.item.controller.dto.response.OptionsResponse;
 import kr.codesquad.kiosk.item.domain.Item;
@@ -58,11 +58,11 @@ public class FixtureFactory {
 		Map<String, List<OptionsResponse>> map = new HashMap<>();
 
 		map.put("Size",
-			List.of(
-				new OptionsResponse(1, "Small"),
-				new OptionsResponse(2, "Medium"),
-				new OptionsResponse(3, "Large")
-			)
+				List.of(
+						new OptionsResponse(1, "Small"),
+						new OptionsResponse(2, "Medium"),
+						new OptionsResponse(3, "Large")
+				)
 		);
 		map.put("Temperature", List.of(new OptionsResponse(5, "Ice")));
 
@@ -71,7 +71,7 @@ public class FixtureFactory {
 
 	public static Map<String, List<Options>> createOptionsMap() {
 		return Map.of("Size", List.of(new Options(1, "Small"), new Options(2, "Medium"), new Options(3, "Large")),
-			"Temperature", List.of(new Options(5, "Ice")));
+				"Temperature", List.of(new Options(5, "Ice")));
 	}
 
 	public static List<PaymentResponse> createPaymentResponses() {

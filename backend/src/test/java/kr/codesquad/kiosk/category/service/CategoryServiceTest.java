@@ -1,12 +1,11 @@
 package kr.codesquad.kiosk.category.service;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
+import kr.codesquad.kiosk.category.controller.dto.response.CategoryResponse;
+import kr.codesquad.kiosk.category.domain.Category;
+import kr.codesquad.kiosk.category.repository.CategoryRepository;
+import kr.codesquad.kiosk.exception.BusinessException;
+import kr.codesquad.kiosk.exception.ErrorCode;
+import kr.codesquad.kiosk.fixture.FixtureFactory;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,12 +14,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import kr.codesquad.kiosk.category.domain.Category;
-import kr.codesquad.kiosk.category.dto.response.CategoryResponse;
-import kr.codesquad.kiosk.category.repository.CategoryRepository;
-import kr.codesquad.kiosk.exception.BusinessException;
-import kr.codesquad.kiosk.exception.ErrorCode;
-import kr.codesquad.kiosk.fixture.FixtureFactory;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CategoryServiceTest {
@@ -44,15 +43,15 @@ class CategoryServiceTest {
 		// then
 		SoftAssertions softAssertions = new SoftAssertions();
 		softAssertions.assertThat(actualResponse)
-			.isNotNull()
-			.hasSize(categories.size());
+				.isNotNull()
+				.hasSize(categories.size());
 
 		List<CategoryResponse> expectedResponse = categories.stream()
-			.map(category -> CategoryResponse.from(category.getId(), category.getName()))
-			.collect(Collectors.toList());
+				.map(category -> CategoryResponse.from(category.getId(), category.getName()))
+				.collect(Collectors.toList());
 
 		softAssertions.assertThat(actualResponse)
-			.containsExactlyElementsOf(expectedResponse);
+				.containsExactlyElementsOf(expectedResponse);
 
 		softAssertions.assertAll();
 	}
@@ -65,9 +64,9 @@ class CategoryServiceTest {
 
 		// when & then
 		assertAll(
-			() -> assertThatThrownBy(() -> categoryService.getAllCategories()).isInstanceOf(BusinessException.class)
-				.extracting("errorCode")
-				.isEqualTo(ErrorCode.EMPTY_RESULT),
-			() -> then(categoryRepository).should(times(1)).findAll());
+				() -> assertThatThrownBy(() -> categoryService.getAllCategories()).isInstanceOf(BusinessException.class)
+						.extracting("errorCode")
+						.isEqualTo(ErrorCode.EMPTY_RESULT),
+				() -> then(categoryRepository).should(times(1)).findAll());
 	}
 }

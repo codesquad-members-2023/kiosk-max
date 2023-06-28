@@ -1,15 +1,14 @@
 package kr.codesquad.kiosk.category.controller;
 
-import java.util.List;
-
+import kr.codesquad.kiosk.category.controller.dto.response.CategoryResponse;
+import kr.codesquad.kiosk.category.service.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.codesquad.kiosk.category.dto.response.CategoryResponse;
-import kr.codesquad.kiosk.category.service.CategoryService;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
