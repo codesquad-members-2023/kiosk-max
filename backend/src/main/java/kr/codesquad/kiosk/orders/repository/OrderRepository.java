@@ -76,8 +76,8 @@ public class OrderRepository {
 	}
 
 	private int saveOrderAndReturnId(Orders orders) {
-		String sql = "insert into orders(amount, total, remain, order_date, payment_id) "
-			+ "values(:amount, :total, :remain, now(), :paymentId)";
+		String sql = "INSERT INTO orders(amount, total, remain, order_date, payment_id) "
+			+ "VALUES(:amount, :total, :remain, now(), :paymentId)";
 		SqlParameterSource sqlParameterSource = mappingOrderSqlParameterSource(orders);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -100,8 +100,8 @@ public class OrderRepository {
 	}
 
 	private void saveOrderItemOption(OrderItemOption orderItemOption) {
-		String sql = "insert into order_item_option(options_id, order_item_id) "
-			+ "values(:optionsId, :orderItemId)";
+		String sql = "INSERT INTO order_item_option(options_id, order_item_id) "
+			+ "VALUES(:optionsId, :orderItemId)";
 		SqlParameterSource sqlParameterSource = mappingOrderItemOptionSqlParameterSource(orderItemOption);
 
 		jdbcTemplate.update(sql, sqlParameterSource);
