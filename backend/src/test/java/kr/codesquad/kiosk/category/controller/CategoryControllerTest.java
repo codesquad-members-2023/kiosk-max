@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasItems;
+import static org.mockito.BDDMockito.anyInt;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -43,8 +45,10 @@ class CategoryControllerTest {
 				)
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.length()").value(response.size()))
-				.andExpect(jsonPath("$[*].id").value(hasItems(response.stream().map(CategoryResponse::id).toArray())))
-				.andExpect(jsonPath("$[*].name").value(hasItems(response.stream().map(CategoryResponse::name).toArray())));
+				.andExpect(jsonPath("$[*].id")
+						.value(hasItems(response.stream().map(CategoryResponse::id).toArray())))
+				.andExpect(jsonPath("$[*].name")
+						.value(hasItems(response.stream().map(CategoryResponse::name).toArray())));
 	}
 
 	@DisplayName("카테고리 항목을 불러오지 못하면 500 Connection Error를 반환한다.")
@@ -60,5 +64,40 @@ class CategoryControllerTest {
 				.andDo(print())
 				.andExpect(status().isInternalServerError())
 				.andExpect(jsonPath("$.message").value(ErrorCode.EMPTY_RESULT.getDescription()));
+	}
+
+	@DisplayName("카테고리 아이디로 조회했을 때 해당 아이템 목록을 불러온다.")
+	@Test
+	void whenGetCategoryItems_thenResponse200OK() throws Exception {
+		// given
+		given(categoryService.getCategoryItems(anyInt())).willReturn(FixtureFactory.createCategoryItemsResponse());
+
+		// when & then
+		mockMvc.perform(
+						get("/api/categories/1")
+				)
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.items").exists())
+				.andExpect(jsonPath("$['items'][*]['id']").exists())
+				.andExpect(jsonPath("$['items'][*]['name']").exists())
+				.andExpect(jsonPath("$['items'][*]['price']").exists())
+				.andExpect(jsonPath("$['items'][*]['isSignature']").exists())
+				.andExpect(jsonPath("$['items'][*]['image']").exists());
+	}
+
+	@DisplayName("카테고리 항목을 불러오지 못하면 404 NOT_FOUND를 반환한다.")
+	@Test
+	void whenGetCategoryItems_then404NotFound() throws Exception {
+		// given
+		given(categoryService.getCategoryItems(anyInt()))
+				.willThrow(new BusinessException(ErrorCode.CATEGORY_NOT_FOUND));
+
+		// when & then
+		mockMvc.perform(
+						get("/api/categories/1")
+				)
+				.andDo(print())
+				.andExpect(status().isNotFound())
+				.andExpect(jsonPath("$.message").value(ErrorCode.CATEGORY_NOT_FOUND.getDescription()));
 	}
 }

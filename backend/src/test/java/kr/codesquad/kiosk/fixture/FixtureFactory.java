@@ -1,5 +1,7 @@
 package kr.codesquad.kiosk.fixture;
 
+import kr.codesquad.kiosk.category.controller.dto.ItemResponse;
+import kr.codesquad.kiosk.category.controller.dto.response.CategoryItemsResponse;
 import kr.codesquad.kiosk.category.controller.dto.response.CategoryResponse;
 import kr.codesquad.kiosk.category.domain.Category;
 import kr.codesquad.kiosk.item.controller.dto.response.ItemDetailsResponse;
@@ -97,5 +99,17 @@ public class FixtureFactory {
 
 	public static OrderItemResponse createOrderItemResponse() {
 		return new OrderItemResponse("콜드브루", 2, 10000);
+	}
+
+	public static List<ItemResponse> createItemResponses() {
+		return List.of(
+				new ItemResponse(1, "콜드 브루", 5000, "url"),
+				new ItemResponse(2, "돌체 콜드 브루", 5500, "url"),
+				new ItemResponse(3, "아메리카노", 4500, "url")
+		);
+	}
+
+	public static CategoryItemsResponse createCategoryItemsResponse() {
+		return new CategoryItemsResponse(createItemResponses());
 	}
 }
