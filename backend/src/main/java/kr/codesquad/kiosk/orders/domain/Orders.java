@@ -23,12 +23,16 @@ public class Orders {
 	private List<OrderItem> orderItems;
 
 	public void calculatePriceInfo(int total) {
-		if (paymentId != PaymentType.CASH_PAYMENT.getId())
-			return;
-
 		this.total = total;
-		if (amount != 0 && amount >= total) {
+
+		if (paymentId == PaymentType.CASH_PAYMENT.getId() && amount >= total) {
 			remain = amount - total;
 		}
+
+		if (paymentId == PaymentType.CARD_PAYMENT.getId()) {
+			amount = 0;
+			remain = 0;
+		}
+
 	}
 }
