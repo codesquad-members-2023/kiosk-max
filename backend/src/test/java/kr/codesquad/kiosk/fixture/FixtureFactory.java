@@ -110,6 +110,6 @@ public class FixtureFactory {
 	}
 
 	public static CategoryItemsResponse createCategoryItemsResponse() {
-		return new CategoryItemsResponse(createItemResponses());
+		return new CategoryItemsResponse(1, createItemResponses());
 	}
 }

@@ -45,6 +45,6 @@ public class CategoryService {
 				.filter(itemResponse -> top3ItemIds.contains(itemResponse.getId()))
 				.forEach(ItemResponse::pickSignature);
 
-		return new CategoryItemsResponse(itemResponses);
+		return new CategoryItemsResponse(categoryId, itemResponses);
 	}
 }
