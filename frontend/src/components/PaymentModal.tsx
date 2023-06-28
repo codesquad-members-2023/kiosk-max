@@ -24,7 +24,6 @@ export const PaymentModal = ({
   const paymentCard = () => {
     closeModal();
     showIndicator();
-    console.log(basketList);
   };
 
   const paymentCash = () => {

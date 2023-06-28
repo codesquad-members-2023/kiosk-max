@@ -1,25 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { MenuItem } from "../../mockData";
-import styles from "../../style/Content.module.css";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "../style/SelectModal.module.css";
+import { MenuItem } from "./Content";
 
-type SelectModalType = {
+type MenuOptionProps = {
+  optionKey: string;
+  optionValue: { id: number; name: string };
+  handleOptionChange: (optionKey: string, optionValue: string) => void;
+};
+
+type SelectModalProps = {
   modalData: MenuItem;
   setIsModalOpen: (value: Boolean) => void;
   setBasketList: React.Dispatch<React.SetStateAction<any[]>>;
-  dialogRef: React.RefObject<HTMLDialogElement>;
 };
 
 export const SelectModal = ({
   modalData,
   setIsModalOpen,
   setBasketList,
-  dialogRef,
-}: SelectModalType) => {
+}: SelectModalProps) => {
   const [menuCount, setMenuCount] = useState(1);
   const [selectedOptions, setSelectedOptions] = useState<
     Record<string, string>
   >({});
   const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    dialogRef.current?.showModal();
+  }, []);
 
   useEffect(() => {
     const allSelected = Object.keys(modalData.options).every(
@@ -27,18 +36,24 @@ export const SelectModal = ({
     );
 
     setIsAllSelected(allSelected && menuCount > 0);
-  }, [selectedOptions, menuCount]);
+  }, [modalData.options, selectedOptions, menuCount]);
 
   const increase = () => {
-    if (menuCount + 1 < 99) {
-      setMenuCount(menuCount + 1);
-    }
+    setMenuCount((prev) => {
+      if (prev + 1 < 99) {
+        return prev + 1;
+      }
+      return prev;
+    });
   };
 
   const decrease = () => {
-    if (menuCount - 1 > 0) {
-      setMenuCount(menuCount - 1);
-    }
+    setMenuCount((prev) => {
+      if (prev > 1) {
+        return prev - 1;
+      }
+      return prev;
+    });
   };
 
   const handleOptionChange = (optionKey: string, optionValue: string) => {
@@ -46,6 +61,12 @@ export const SelectModal = ({
       ...selectedOptions,
       [optionKey]: optionValue,
     });
+  };
+
+  const closeModalButton = () => {
+    dialogRef.current?.close();
+    setIsModalOpen(false);
+    setMenuCount(1);
   };
 
   const handleAddButton = () => {
@@ -68,8 +89,10 @@ export const SelectModal = ({
       if (itemIndex > -1) {
         const newBasketList = [...prev];
         const existingItem = { ...newBasketList[itemIndex] };
+
         existingItem.count += obj.count;
         newBasketList[itemIndex] = existingItem;
+
         return newBasketList;
       }
 
@@ -78,62 +101,43 @@ export const SelectModal = ({
 
     setIsModalOpen(false);
   };
-
+  console.log();
   return (
     <dialog
       ref={dialogRef}
       className={styles.modal}
       onClose={() => setIsModalOpen(false)}
     >
-      <button
-        className={styles.closeButton}
-        onClick={() => {
-          dialogRef.current?.close();
-          setIsModalOpen(false);
-          setMenuCount(1);
-        }}
-      >
+      <button className={styles.closeButton} onClick={closeModalButton}>
         <div className={styles.closeLogo}></div>
       </button>
-      <div className={styles.modalContent}>
+      <div
+        className={`${styles.modalContent} ${
+          Object.keys(modalData.options).length === 0 && styles.noneOptions
+        }`}
+      >
         <div className={styles.modalMenu} key={modalData.name}>
-          {modalData.isSignature ? (
-            <div className={styles.signature}>인기</div>
-          ) : (
-            ""
-          )}
-          <img
-            src="https://media.basecamp.team/media/travelagent/99/imagecontent/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4_%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8.png"
-            alt="이미지"
-          />
+          <img src={modalData.image} alt={modalData.name} />
           <div className={styles.ModalTextDiv}>{`${modalData.name}`}</div>
           <div className={styles.ModalTextDiv}>{`${modalData.price}원`}</div>
         </div>
         <div className={styles.menuOptions}>
-          {Object.keys(modalData.options).map((optionKey, index1) => (
-            <div key={optionKey + index1} className={styles.option}>
-              {modalData.options[optionKey].map((optionValue, index2) => (
-                <React.Fragment key={optionKey + optionValue + index2}>
-                  <input
-                    type="radio"
-                    className={styles.optionRadio}
-                    id={optionValue}
-                    name={optionKey}
-                    value={optionValue}
-                    onChange={() => handleOptionChange(optionKey, optionValue)}
-                  />
-                  <label htmlFor={optionValue} className={styles.optionButton}>
-                    {optionValue}
-                  </label>
-                </React.Fragment>
+          {Object.keys(modalData.options).map((optionKey) => (
+            <div key={optionKey} className={styles.option}>
+              {modalData.options[optionKey].map((optionValue) => (
+                <MenuOption
+                  key={optionValue.id}
+                  optionKey={optionKey}
+                  optionValue={optionValue}
+                  handleOptionChange={handleOptionChange}
+                />
               ))}
             </div>
           ))}
-
           <div className={styles.counter}>
-            <button onClick={decrease}>-</button>
+            <div className={styles.minusButton} onClick={decrease}></div>
             <div className={styles.countNumber}>{menuCount}</div>
-            <button onClick={increase}>+</button>
+            <div className={styles.plusButton} onClick={increase}></div>
           </div>
         </div>
       </div>
@@ -145,5 +149,30 @@ export const SelectModal = ({
         담기
       </button>
     </dialog>
+  );
+};
+
+const MenuOption = ({
+  optionKey,
+  optionValue,
+  handleOptionChange,
+}: MenuOptionProps) => {
+  return (
+    <React.Fragment>
+      <input
+        type="radio"
+        className={styles.optionRadio}
+        id={optionValue.id.toString()}
+        name={optionKey}
+        value={optionValue.name}
+        onChange={() => handleOptionChange(optionKey, optionValue.name)}
+      />
+      <label
+        htmlFor={optionValue.id.toString()}
+        className={styles.optionButton}
+      >
+        {optionValue.name}
+      </label>
+    </React.Fragment>
   );
 };
