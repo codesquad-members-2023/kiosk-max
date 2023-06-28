@@ -24,7 +24,7 @@ export const Navigation = ({ categoryId, handleTabClick }: NavigationProps) => {
     const fetchNavigation = async () => {
       const response = await fetch("http://43.201.168.11:8080/api/categories");
       const data = await response.json();
-      console.log(data);
+
       setNavigationData(data);
     };
 
