@@ -37,10 +37,14 @@ public class OrderService {
         return amount;
     }
 
-    public CardPaymentResponseDto cardPay(OrderRequestDto orderRequestDto){
+    public CardPaymentResponseDto cardPay(int totalPay,OrderRequestDto orderRequestDto){
+        String now = createNowDateformat();
+        Order order = orderRepository.getOrder().orElse(Order.builder().orderTime(now).orderNumber(0).build());
+        OrderNumberCreatorDto dto = new OrderNumberCreatorDto(order.getOrderTime(),order.getOrderNumber());
         return new CardPaymentResponseDto(
+                createOrderNumber(dto,now),
+                totalPay,
                 orderRequestDto.getNumber(),
-                calculateOrder(orderRequestDto),
                 Boolean.TRUE
         );
     }
@@ -49,25 +53,24 @@ public class OrderService {
         String now = createNowDateformat();
         Order order = orderRepository.getOrder().orElse(Order.builder().orderTime(now).orderNumber(0).build());
         OrderNumberCreatorDto dto = new OrderNumberCreatorDto(order.getOrderTime(),order.getOrderNumber());
+        int orderId = orderRepository.insertOrder(createOrderNumber(dto,now)+1);
         for(int i = 0; i<orderRequestDto.getOrderList().size(); i++){
             OrderMenu orderMenu = OrderMenu.builder()
                     .menuId(orderRequestDto.getOrderList().get(i).getMenuId())
                     .quantity(orderRequestDto.getOrderList().get(i).getQuantity())
                     .build();
-            orderRepository.saveOrder(createOrderNumber(dto,now),orderMenu,orderRequestDto.getOrderList().get(i).getOption());
+            orderRepository.saveOrder(orderId,orderMenu,orderRequestDto.getOrderList().get(i).getOption());
         }
     }
-
-
 
     private int createOrderNumber(OrderNumberCreatorDto dto,String now) {
         String storedDate = dto.getDate();
         int orderNumber = dto.getOrderNumber();
         String currentDate = storedDate.split(" ")[0];
         if(!now.equals(currentDate)) {
-            return 1;
+            return 0;
         }
-        return orderNumber+1;
+        return orderNumber;
     }
 
     private String createNowDateformat() {
@@ -81,8 +84,10 @@ public class OrderService {
         return orderRepository.getReceiptByOrderId(orderId);
     }
 
-    public CashPaymentResponseDto cashPayment( OrderRequestDto requestDto ) {
-        int totalPay = calculateOrder(requestDto);
+    public CashPaymentResponseDto cashPayment( int totalPay,OrderRequestDto requestDto ) {
+        String now = createNowDateformat();
+        Order order = orderRepository.getOrder().orElse(Order.builder().orderTime(now).orderNumber(0).build());
+        OrderNumberCreatorDto dto = new OrderNumberCreatorDto(order.getOrderTime(),order.getOrderNumber());
         int inputMoney = requestDto.getNumber();
         int changes = inputMoney - totalPay;
         return CashPaymentResponseDto
@@ -90,6 +95,7 @@ public class OrderService {
                 .totalPay(totalPay)
                 .changes(changes)
                 .result(true)
+                .orderNumber(createOrderNumber(dto,now))
                 .build();
     }
     private boolean random() {
