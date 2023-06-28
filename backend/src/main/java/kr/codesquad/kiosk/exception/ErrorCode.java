@@ -9,7 +9,8 @@ public enum ErrorCode {
 	EMPTY_RESULT(500, "데이터 불러오기를 실패했습니다."),
 	ORDER_NOT_FOUND(404, "해당 주문을 찾을 수 없습니다."),
 	ITEM_NOT_FOUND(404, "해당 아이템을 찾을 수 없습니다."),
-	PAYMENTS_NOT_FOUND(404, "결제 방식을 찾을 수 없습니다.");
+	PAYMENTS_NOT_FOUND(404, "결제 방식을 찾을 수 없습니다."),
+	CATEGORY_NOT_FOUND(404, "해당 카테고리를 찾을 수 없습니다.");
 
 	private final int statusCode;
 	private final String description;

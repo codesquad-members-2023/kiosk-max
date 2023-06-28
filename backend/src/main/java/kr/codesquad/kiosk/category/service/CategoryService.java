@@ -1,5 +1,7 @@
 package kr.codesquad.kiosk.category.service;
 
+import kr.codesquad.kiosk.category.controller.dto.ItemResponse;
+import kr.codesquad.kiosk.category.controller.dto.response.CategoryItemsResponse;
 import kr.codesquad.kiosk.category.controller.dto.response.CategoryResponse;
 import kr.codesquad.kiosk.category.repository.CategoryRepository;
 import kr.codesquad.kiosk.exception.BusinessException;
@@ -28,5 +30,21 @@ public class CategoryService {
 		}
 
 		return categories;
+	}
+
+	@Transactional(readOnly = true)
+	public CategoryItemsResponse getCategoryItems(Integer categoryId) {
+		List<ItemResponse> itemResponses = categoryRepository.findItemsByCategoryId(categoryId);
+		if (itemResponses.isEmpty()) {
+			throw new BusinessException(ErrorCode.CATEGORY_NOT_FOUND);
+		}
+
+		List<Integer> top3ItemIds = categoryRepository.findTop3ItemsByCategoryId(categoryId);
+
+		itemResponses.stream()
+				.filter(itemResponse -> top3ItemIds.contains(itemResponse.getId()))
+				.forEach(ItemResponse::pickSignature);
+
+		return new CategoryItemsResponse(itemResponses);
 	}
 }
