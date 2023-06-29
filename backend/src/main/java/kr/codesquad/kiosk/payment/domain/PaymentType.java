@@ -1,5 +1,7 @@
 package kr.codesquad.kiosk.payment.domain;
 
+import kr.codesquad.kiosk.exception.BusinessException;
+import kr.codesquad.kiosk.exception.ErrorCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +25,16 @@ public enum PaymentType {
 		}
 
 		return false;
+	}
+
+	public static PaymentType getPaymentType(int paymentId) {
+		for (PaymentType type : PaymentType.values()) {
+			if (type.getId() == paymentId) {
+				return type;
+			}
+		}
+
+		throw new BusinessException(ErrorCode.PAYMENTS_NOT_FOUND);
 	}
 
 }
