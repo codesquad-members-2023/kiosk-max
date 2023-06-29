@@ -7,13 +7,13 @@ import kr.codesquad.kiosk.orderitem.domain.OrderItemOption;
 
 public record OrderItemRequest(
 	Integer itemId,
-	Integer count,
+	Integer quantity,
 	List<Integer> options
 ) {
 	public OrderItem toOrderItem() {
 		return OrderItem.builder()
 			.itemId(itemId)
-			.itemQuantity(count)
+			.itemQuantity(quantity)
 			.orderItemOptions(
 				options.stream()
 					.map(OrderItemOption::new)
