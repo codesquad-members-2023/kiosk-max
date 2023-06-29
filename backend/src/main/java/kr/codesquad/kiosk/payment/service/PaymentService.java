@@ -23,8 +23,8 @@ public class PaymentService {
 			.map(PaymentResponse::from)
 			.toList();
 
-		if(payments.isEmpty()) {
-			throw new BusinessException(ErrorCode.PAYMENTS_NOT_FOUND);
+		if (payments.isEmpty()) {
+			throw new BusinessException(ErrorCode.EMPTY_RESULT);
 		}
 
 		return payments;

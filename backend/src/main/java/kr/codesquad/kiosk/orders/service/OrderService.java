@@ -15,6 +15,7 @@ import kr.codesquad.kiosk.orders.controller.dto.response.OrderReceiptResponse;
 import kr.codesquad.kiosk.orders.controller.dto.response.OrdersIdResponse;
 import kr.codesquad.kiosk.orders.domain.OrderResultType;
 import kr.codesquad.kiosk.orders.repository.OrderRepository;
+import kr.codesquad.kiosk.payment.domain.PaymentType;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -34,6 +35,10 @@ public class OrderService {
 
 	@Transactional
 	public OrdersIdResponse createOrder(OrderReceiptRequest request, OrderResultType orderResultType) {
+		if (!PaymentType.isValid(request.toOrders().getPaymentId())) {
+			throw new BusinessException(ErrorCode.PAYMENTS_NOT_FOUND);
+		}
+
 		if (orderResultType == OrderResultType.SUCCESS) {
 			return new OrdersIdResponse(
 				orderRepository.save(request.toOrders())

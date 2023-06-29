@@ -15,4 +15,14 @@ public enum PaymentType {
 		return id == paymentId;
 	}
 
+	public static boolean isValid(int paymentId) {
+		for (PaymentType type : PaymentType.values()) {
+			if (type.getId() == paymentId) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 }
