@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import kr.codesquad.kiosk.orders.controller.dto.request.OrderReceiptRequest;
 import kr.codesquad.kiosk.orders.controller.dto.response.OrdersIdResponse;
 import kr.codesquad.kiosk.orders.service.OrderService;
 import lombok.RequiredArgsConstructor;
 
+@Hidden
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/test-api")
