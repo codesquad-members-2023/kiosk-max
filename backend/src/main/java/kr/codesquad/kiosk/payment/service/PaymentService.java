@@ -24,7 +24,7 @@ public class PaymentService {
 			.toList();
 
 		if (payments.isEmpty()) {
-			throw new BusinessException(ErrorCode.EMPTY_RESULT);
+			throw new BusinessException(ErrorCode.PAYMENTS_NOT_FOUND);
 		}
 
 		return payments;
