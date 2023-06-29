@@ -113,7 +113,7 @@ public class OrderRepository {
 		jdbcTemplate.update(sql, sqlParameterSource);
 	}
 
-	private Integer findPriceBy(int itemId) {
+	private Integer findPriceByItemId(int itemId) {
 		String sql = "SELECT price FROM item WHERE id = :id";
 
 		return jdbcTemplate.queryForObject(sql, Map.of("id", itemId), Integer.class);
@@ -122,7 +122,7 @@ public class OrderRepository {
 	private Integer calculateTotal(List<OrderItem> orderItems) {
 		int total = 0;
 		for (OrderItem orderItem : orderItems) {
-			total += findPriceBy(orderItem.getItemId()) * orderItem.getItemQuantity();
+			total += findPriceByItemId(orderItem.getItemId()) * orderItem.getItemQuantity();
 		}
 
 		return total;
