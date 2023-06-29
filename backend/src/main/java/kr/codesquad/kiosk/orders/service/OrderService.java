@@ -1,11 +1,5 @@
 package kr.codesquad.kiosk.orders.service;
 
-import java.util.List;
-import java.util.Random;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import kr.codesquad.kiosk.exception.BusinessException;
 import kr.codesquad.kiosk.exception.ErrorCode;
 import kr.codesquad.kiosk.orders.controller.dto.OrderItemResponse;
@@ -17,6 +11,11 @@ import kr.codesquad.kiosk.orders.domain.OrderResultType;
 import kr.codesquad.kiosk.orders.repository.OrderRepository;
 import kr.codesquad.kiosk.payment.domain.PaymentType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
@@ -27,10 +26,10 @@ public class OrderService {
 	@Transactional(readOnly = true)
 	public OrderReceiptResponse getReceipt(Integer orderId) {
 		OrdersResponse ordersResponse = orderRepository.findOrdersResponseByOrderId(orderId)
-			.orElseThrow(() -> new BusinessException(ErrorCode.ORDER_NOT_FOUND));
+				.orElseThrow(() -> new BusinessException(ErrorCode.ORDER_NOT_FOUND));
 		List<OrderItemResponse> itemResponses = orderRepository.findOrderItemResponsesByOrderId(orderId);
 
-		return OrderReceiptResponse.from(itemResponses, ordersResponse);
+		return OrderReceiptResponse.from(orderId, itemResponses, ordersResponse);
 	}
 
 	@Transactional
@@ -41,7 +40,7 @@ public class OrderService {
 
 		if (orderResultType == OrderResultType.SUCCESS) {
 			return new OrdersIdResponse(
-				orderRepository.saveOrder(request.toOrders())
+					orderRepository.saveOrder(request.toOrders())
 			);
 		}
 

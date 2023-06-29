@@ -39,12 +39,16 @@ class OrderControllerTest {
 		OrderItemResponse orderItemResponse = FixtureFactory.createOrderItemResponse();
 		OrdersResponse ordersResponse = FixtureFactory.createOrdersResponse();
 		given(orderService.getReceipt(anyInt()))
-				.willReturn(OrderReceiptResponse.from(List.of(orderItemResponse), ordersResponse));
+				.willReturn(OrderReceiptResponse.from(1, List.of(orderItemResponse), ordersResponse));
 
 		// when & then
 		mockMvc.perform(get("/api/orders/1"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.items").exists())
+				.andExpect(jsonPath("$['items'][*]['name']").exists())
+				.andExpect(jsonPath("$['items'][*]['quantity']").exists())
+				.andExpect(jsonPath("$['items'][*]['price']").exists())
+				.andExpect(jsonPath("$['items'][*]['options']").exists())
 				.andExpect(jsonPath("$.payments").exists())
 				.andExpect(jsonPath("$.amount").exists())
 				.andExpect(jsonPath("$.total").exists())
