@@ -1,27 +1,37 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../style/Basket.module.css";
 import { Indicator, PaymentModal } from "./PaymentModal";
+import { ReceiptData } from "../App";
+type OptionValue = {
+  id: number;
+  name: string;
+};
 
-interface Options {
-  [key: string]: string;
-}
+type Options = {
+  [key: string]: OptionValue;
+};
 
-export interface basketList {
+export type basketList = {
   id: string;
   name: string;
   price: number;
   count: number;
   image: string;
   options: Options;
-}
+};
 
 interface BasketProps {
   basketList: basketList[];
   setBasketList: React.Dispatch<React.SetStateAction<any[]>>;
+  setReceiptData: React.Dispatch<React.SetStateAction<ReceiptData | undefined>>;
 }
 
-export const Basket = ({ basketList, setBasketList }: BasketProps) => {
-  const second = 300000;
+export const Basket = ({
+  basketList,
+  setBasketList,
+  setReceiptData,
+}: BasketProps) => {
+  const second = 30;
   const [timer, setTimer] = useState(second);
   const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
   const [isPaying, setIsPaying] = useState<Boolean>(false);
@@ -137,6 +147,7 @@ export const Basket = ({ basketList, setBasketList }: BasketProps) => {
           cancelPayment={cancelPayment}
           showIndicator={showIndicator}
           basketList={basketList}
+          setReceiptData={setReceiptData}
         />
       )}
       {isIndicating && <Indicator />}
@@ -207,7 +218,7 @@ const BasketItem = ({
           {item.name}
           <div className={styles.options}>
             {Object.entries(item.options)
-              .map(([_, value]) => value)
+              .map(([_, { name }]) => name)
               .join(" / ")}
           </div>
         </div>

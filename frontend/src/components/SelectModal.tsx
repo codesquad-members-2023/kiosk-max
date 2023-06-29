@@ -5,7 +5,10 @@ import { MenuItem } from "./Content";
 type MenuOptionProps = {
   optionKey: string;
   optionValue: { id: number; name: string };
-  handleOptionChange: (optionKey: string, optionValue: string) => void;
+  handleOptionChange: (
+    optionKey: string,
+    optionValue: { id: number; name: string }
+  ) => void;
 };
 
 type SelectModalProps = {
@@ -21,7 +24,7 @@ export const SelectModal = ({
 }: SelectModalProps) => {
   const [menuCount, setMenuCount] = useState(1);
   const [selectedOptions, setSelectedOptions] = useState<
-    Record<string, string>
+    Record<string, { id: number; name: string }>
   >({});
   const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -56,7 +59,10 @@ export const SelectModal = ({
     });
   };
 
-  const handleOptionChange = (optionKey: string, optionValue: string) => {
+  const handleOptionChange = (
+    optionKey: string,
+    optionValue: { id: number; name: string }
+  ) => {
     setSelectedOptions({
       ...selectedOptions,
       [optionKey]: optionValue,
@@ -101,7 +107,7 @@ export const SelectModal = ({
 
     setIsModalOpen(false);
   };
-  console.log();
+
   return (
     <dialog
       ref={dialogRef}
@@ -165,7 +171,7 @@ const MenuOption = ({
         id={optionValue.id.toString()}
         name={optionKey}
         value={optionValue.name}
-        onChange={() => handleOptionChange(optionKey, optionValue.name)}
+        onChange={() => handleOptionChange(optionKey, optionValue)}
       />
       <label
         htmlFor={optionValue.id.toString()}
