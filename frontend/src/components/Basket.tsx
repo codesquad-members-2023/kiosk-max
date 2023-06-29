@@ -145,7 +145,7 @@ export const Basket = ({
           dialogRef={dialogRef}
           closeModal={closeModal}
           cancelPayment={cancelPayment}
-          showIndicator={showIndicator}
+          setIsIndicating={setIsIndicating}
           basketList={basketList}
           setReceiptData={setReceiptData}
         />

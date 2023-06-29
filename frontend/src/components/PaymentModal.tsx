@@ -3,9 +3,10 @@ import indicator from "../assets/indicator.png";
 import { basketList } from "./Basket";
 import { useEffect, useRef, useState } from "react";
 import { ReceiptData } from "../App";
+import { ErrorModal } from "./ErrorModal";
 
 type PaymentModalProps = {
-  showIndicator: () => void;
+  setIsIndicating: (value: boolean) => void;
   closeModal: () => void;
   cancelPayment: () => void;
   dialogRef: React.RefObject<HTMLDialogElement>;
@@ -14,7 +15,7 @@ type PaymentModalProps = {
 };
 
 export const PaymentModal = ({
-  showIndicator,
+  setIsIndicating,
   closeModal,
   cancelPayment,
   dialogRef,
@@ -22,8 +23,11 @@ export const PaymentModal = ({
   setReceiptData,
 }: PaymentModalProps) => {
   const [isCashModalOpen, setIsCashModalOpen] = useState(false);
+  const [fetchError, setFetchError] = useState<{
+    errorCode: string;
+    message: string;
+  }>();
   const cashModalRef = useRef<HTMLDialogElement>(null);
-
   const getOrdersId = async (paymentId: number, inputPrice = 0) => {
     const obj = {
       orders: {
@@ -39,22 +43,42 @@ export const PaymentModal = ({
       }),
     };
 
-    const response = await fetch("http://43.201.168.11:8080/api/orders", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(obj),
-    });
-    const data = await response.json();
+    try {
+      const response = await fetch("http://43.201.168.11:8080/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      });
+      const data = await response.json();
 
-    return data.ordersId;
+      if (!response.ok) {
+        setIsIndicating(false);
+        setFetchError(data);
+
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return data.ordersId;
+    } catch (error) {
+      return null;
+    }
   };
 
   const paymentCard = async () => {
     closeModal();
-    showIndicator();
+    setIsIndicating(true);
+
     const ordersId = await getOrdersId(1);
+    if (ordersId === null) {
+      setIsIndicating(false);
+
+      return;
+    }
+    closeModal();
+    console.log(1);
+
     setReceiptData(await getReceipt(ordersId));
   };
 
@@ -106,8 +130,13 @@ export const PaymentModal = ({
           cashModalRef={cashModalRef}
           basketList={basketList}
           setReceiptData={setReceiptData}
+          setFetchError={setFetchError}
           closeCashModal={closeCashModal}
         />
+      )}
+
+      {fetchError && (
+        <ErrorModal {...fetchError} setFetchError={setFetchError} />
       )}
     </dialog>
   );
@@ -129,11 +158,13 @@ const CashModal = ({
   basketList,
   closeCashModal,
   setReceiptData,
+  setFetchError,
 }: {
   cashModalRef: React.RefObject<HTMLDialogElement>;
   basketList: basketList[];
   closeCashModal: () => void;
   setReceiptData: React.Dispatch<React.SetStateAction<ReceiptData | undefined>>;
+  setFetchError: (value: { errorCode: string; message: string }) => void;
 }) => {
   const totalPrice = basketList.reduce((a, b) => {
     return a + b.count * b.price;
@@ -145,8 +176,13 @@ const CashModal = ({
   };
 
   const paymentButton = async () => {
-    const orderId = await getOrdersId(2);
-    setReceiptData(await getReceipt(orderId));
+    const ordersId = await getOrdersId(2);
+    if (ordersId === null) {
+      closeCashModal();
+      return;
+    }
+
+    setReceiptData(await getReceipt(ordersId));
   };
 
   const getOrdersId = async (paymentId: number) => {
@@ -164,19 +200,28 @@ const CashModal = ({
       }),
     };
 
-    const response = await fetch(
-      "http://43.201.168.11:8080/test-api/orders-success",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(obj),
-      }
-    );
-    const data = await response.json();
+    try {
+      const response = await fetch(
+        "http://43.201.168.11:8080/test-api/orders-failure",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(obj),
+        }
+      );
+      const data = await response.json();
 
-    return data.ordersId;
+      if (!response.ok) {
+        setFetchError(data);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return data.ordersId;
+    } catch (error) {
+      return null;
+    }
   };
 
   const getReceipt = async (ordersId: number) => {
