@@ -116,7 +116,11 @@ public class OrderRepository {
 	private Integer findPriceByItemId(int itemId) {
 		String sql = "SELECT price FROM item WHERE id = :id";
 
-		return jdbcTemplate.queryForObject(sql, Map.of("id", itemId), Integer.class);
+		try {
+			return jdbcTemplate.queryForObject(sql, Map.of("id", itemId), Integer.class);
+		} catch (EmptyResultDataAccessException e) {
+			throw new BusinessException(ErrorCode.ITEM_NOT_FOUND);
+		}
 	}
 
 	private Integer calculateTotal(List<OrderItem> orderItems) {
