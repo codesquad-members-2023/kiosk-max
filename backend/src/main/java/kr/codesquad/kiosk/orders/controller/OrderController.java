@@ -42,7 +42,10 @@ public class OrderController {
 
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "200", description = "주문 생성 성공", content = @Content(schema = @Schema(implementation = OrderReceiptResponse.class))),
-		@ApiResponse(responseCode = "404", description = "잘못된 주문 내역을 전달 받았을 때", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))})
+		@ApiResponse(responseCode = "404", description = "잘못된 주문 내역을 전달 받았을 때", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
+		@ApiResponse(responseCode = "403", description = "사용자의 카드가 한도 초과일 때", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
+		@ApiResponse(responseCode = "403", description = "사용자 카드의 마그네틱을 인식할 수 없을 때", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
+		@ApiResponse(responseCode = "503", description = "네트워크 오류로 결제를 진행할 수 없을 때", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))})
 	@Operation(summary = "주문 생성", description = "주문 내역을 받아와 주문을 생성한다.")
 	@PostMapping
 	public ResponseEntity<OrdersIdResponse> createOrder(@RequestBody OrderReceiptRequest request) {
