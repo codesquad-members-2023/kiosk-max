@@ -13,6 +13,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import kr.codesquad.kiosk.exception.BusinessException;
+import kr.codesquad.kiosk.exception.ErrorCode;
 import kr.codesquad.kiosk.orderitem.domain.OrderItem;
 import kr.codesquad.kiosk.orderitem.domain.OrderItemOption;
 import kr.codesquad.kiosk.orders.controller.dto.OrderItemResponse;
@@ -83,7 +85,9 @@ public class OrderRepository {
 
 		jdbcTemplate.update(sql, sqlParameterSource, keyHolder);
 
-		return Objects.requireNonNullElseGet(keyHolder.getKey(), () -> 0).intValue();
+		return Objects.requireNonNullElseGet(keyHolder.getKey(), () -> {
+			throw new BusinessException(ErrorCode.SERVER_ERROR);
+		}).intValue();
 	}
 
 	private int saveOrderItem(OrderItem orderItem) {
@@ -96,7 +100,9 @@ public class OrderRepository {
 
 		jdbcTemplate.update(sql, sqlParameterSource, keyHolder);
 
-		return Objects.requireNonNullElseGet(keyHolder.getKey(), () -> 0).intValue();
+		return Objects.requireNonNullElseGet(keyHolder.getKey(), () -> {
+			throw new BusinessException(ErrorCode.SERVER_ERROR);
+		}).intValue();
 	}
 
 	private void saveOrderItemOption(OrderItemOption orderItemOption) {
