@@ -1,19 +1,14 @@
 package kr.codesquad.kiosk.fixture;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import kr.codesquad.kiosk.category.controller.dto.ItemResponse;
 import kr.codesquad.kiosk.category.controller.dto.response.CategoryItemsResponse;
 import kr.codesquad.kiosk.category.controller.dto.response.CategoryResponse;
-
 import kr.codesquad.kiosk.category.domain.Category;
 import kr.codesquad.kiosk.item.controller.dto.response.ItemDetailsResponse;
 import kr.codesquad.kiosk.item.controller.dto.response.OptionsResponse;
 import kr.codesquad.kiosk.item.domain.Item;
 import kr.codesquad.kiosk.item.domain.Options;
+import kr.codesquad.kiosk.orders.controller.dto.OptionDetailsParam;
 import kr.codesquad.kiosk.orders.controller.dto.OrderItemResponse;
 import kr.codesquad.kiosk.orders.controller.dto.OrdersResponse;
 import kr.codesquad.kiosk.orders.controller.dto.request.OrderItemRequest;
@@ -22,6 +17,11 @@ import kr.codesquad.kiosk.orders.controller.dto.request.OrdersRequest;
 import kr.codesquad.kiosk.orders.controller.dto.response.OrdersIdResponse;
 import kr.codesquad.kiosk.payment.controller.response.PaymentResponse;
 import kr.codesquad.kiosk.payment.domain.Payment;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FixtureFactory {
 	public static List<CategoryResponse> createCategoriesResponse() {
@@ -83,14 +83,14 @@ public class FixtureFactory {
 
 	public static List<PaymentResponse> createPaymentResponses() {
 		return createPayments().stream()
-			.map(PaymentResponse::from)
-			.toList();
+				.map(PaymentResponse::from)
+				.toList();
 	}
 
 	public static List<Payment> createPayments() {
 		return List.of(
-			new Payment(1, "카드 결제", "url"),
-			new Payment(3, "현금 결제", "url")
+				new Payment(1, "카드 결제", "url"),
+				new Payment(3, "현금 결제", "url")
 		);
 	}
 
@@ -103,7 +103,9 @@ public class FixtureFactory {
 	}
 
 	public static OrderItemResponse createOrderItemResponse() {
-		return new OrderItemResponse("콜드브루", 2, 10000);
+		return new OrderItemResponse("콜드브루", 2, 10000,
+				List.of(Map.of("Size", new OptionDetailsParam(1, "Large")),
+						Map.of("Temperature", new OptionDetailsParam(3, "Hot"))));
 	}
 
 	public static OrderReceiptRequest createOrderReceiptRequest() {
@@ -116,8 +118,8 @@ public class FixtureFactory {
 
 	public static List<OrderItemRequest> createOrderItemsRequest() {
 		return List.of(
-			new OrderItemRequest(1, 4, List.of(1, 5)),
-			new OrderItemRequest(7, 2, List.of(1, 4))
+				new OrderItemRequest(1, 4, List.of(1, 5)),
+				new OrderItemRequest(7, 2, List.of(1, 4))
 		);
 	}
 
