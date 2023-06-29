@@ -46,7 +46,7 @@ public class OrderService {
 	@Transactional
 	public OrdersIdResponse createOrderWithDelayAndRandomSucceed(OrderReceiptRequest request) {
 		causePaymentDelay();
-		return createOrder(request, getRandomOrderResultType());
+		return createOrder(request, OrderResultType.getRandomOrderResultType());
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class OrderService {
 	 */
 	@Transactional
 	public OrdersIdResponse createOrderWithNonDelayAndRandomSucceed(OrderReceiptRequest request) {
-		return createOrder(request, getRandomOrderResultType());
+		return createOrder(request, OrderResultType.getRandomOrderResultType());
 	}
 
 	@Transactional
@@ -66,25 +66,6 @@ public class OrderService {
 	@Transactional
 	public OrdersIdResponse createOrderWithNonDelayAndAlwaysFail(OrderReceiptRequest request) {
 		return createOrder(request, OrderResultType.NETWORK_ERROR);
-	}
-
-	private OrderResultType getRandomOrderResultType() {
-		int randomInt = random.nextInt(10) + 1;
-
-		switch (randomInt) {
-			case 1, 2, 3, 4, 5, 6, 7 -> {
-				return OrderResultType.SUCCESS;
-			}
-			case 8 -> {
-				return OrderResultType.NETWORK_ERROR;
-			}
-			case 9 -> {
-				return OrderResultType.CARD_LIMIT_EXCEEDED;
-			}
-			default -> {
-				return OrderResultType.MAGNETIC_NOT_RECOGNIZED;
-			}
-		}
 	}
 
 	private BusinessException getBusinessException(OrderResultType orderResultType) {

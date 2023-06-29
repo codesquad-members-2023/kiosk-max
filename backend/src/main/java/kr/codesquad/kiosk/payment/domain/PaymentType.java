@@ -10,4 +10,9 @@ public enum PaymentType {
 	CASH_PAYMENT(2);
 
 	private final int id;
+
+	public boolean isSamePaymentId(int paymentId) {
+		return id == paymentId;
+	}
+
 }

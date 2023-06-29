@@ -25,14 +25,13 @@ public class Orders {
 	public void calculatePriceInfo(int total) {
 		this.total = total;
 
-		if (paymentId == PaymentType.CASH_PAYMENT.getId() && amount >= total) {
+		if (PaymentType.CASH_PAYMENT.isSamePaymentId(paymentId) && amount >= total) {
 			remain = amount - total;
 		}
 
-		if (paymentId == PaymentType.CARD_PAYMENT.getId()) {
+		if (PaymentType.CARD_PAYMENT.isSamePaymentId(paymentId)) {
 			amount = 0;
 			remain = 0;
 		}
-
 	}
 }
