@@ -16,9 +16,7 @@ public record OrderItemRequest(
 			.itemQuantity(count)
 			.orderItemOptions(
 				options.stream()
-					.map(
-						i -> OrderItemOption.builder().optionsId(i).build()
-					)
+					.map(OrderItemOption::new)
 					.toList()
 			)
 			.build();
