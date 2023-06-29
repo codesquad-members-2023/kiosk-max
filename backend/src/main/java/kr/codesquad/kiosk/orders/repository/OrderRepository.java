@@ -126,7 +126,7 @@ public class OrderRepository {
 	private Integer calculateTotal(List<OrderItem> orderItems) {
 		int total = 0;
 		for (OrderItem orderItem : orderItems) {
-			total += findPriceByItemId(orderItem.getItemId()) * orderItem.getItemQuantity();
+			total += orderItem.calculatePrice(findPriceByItemId(orderItem.getItemId()));
 		}
 
 		return total;

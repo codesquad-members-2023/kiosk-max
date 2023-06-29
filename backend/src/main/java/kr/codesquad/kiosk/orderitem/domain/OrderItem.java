@@ -22,4 +22,9 @@ public class OrderItem {
 		this.ordersId = ordersId;
 		return this;
 	}
+
+	public int calculatePrice(int itemPrice) {
+		price = itemPrice * itemQuantity;
+		return price;
+	}
 }
