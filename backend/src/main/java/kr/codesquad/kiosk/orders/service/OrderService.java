@@ -40,7 +40,7 @@ public class OrderService {
 			);
 		}
 
-		throw getBusinessException(orderResultType);
+		throw OrderResultType.getBusinessException(orderResultType);
 	}
 
 	@Transactional
@@ -68,30 +68,12 @@ public class OrderService {
 		return createOrder(request, OrderResultType.NETWORK_ERROR);
 	}
 
-	private BusinessException getBusinessException(OrderResultType orderResultType) {
-		switch (orderResultType) {
-			case CARD_LIMIT_EXCEEDED -> {
-				return new BusinessException(ErrorCode.CARD_LIMIT_EXCEEDED_ERROR);
-			}
-			case MAGNETIC_NOT_RECOGNIZED -> {
-				return new BusinessException(ErrorCode.MAGNETIC_NOT_RECOGNIZED_ERROR);
-			}
-			case NETWORK_ERROR -> {
-				return new BusinessException(ErrorCode.NETWORK_FAIN_ERROR);
-			}
-			default -> {
-				return new BusinessException(ErrorCode.RESPONSE_DELAY_ERROR);
-			}
-		}
-	}
-
 	private void causePaymentDelay() {
 		int randomInt = random.nextInt(7) + 1;
 		try {
 			Thread.sleep(randomInt * 1000);
 		} catch (InterruptedException e) {
-			throw getBusinessException(OrderResultType.RESPONSE_DELAY);
+			throw OrderResultType.getBusinessException(OrderResultType.RESPONSE_DELAY);
 		}
 	}
-
 }

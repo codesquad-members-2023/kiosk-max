@@ -2,6 +2,9 @@ package kr.codesquad.kiosk.orders.domain;
 
 import java.util.Random;
 
+import kr.codesquad.kiosk.exception.BusinessException;
+import kr.codesquad.kiosk.exception.ErrorCode;
+
 public enum OrderResultType {
 	SUCCESS,
 	NETWORK_ERROR,
@@ -26,6 +29,23 @@ public enum OrderResultType {
 			}
 			default -> {
 				return OrderResultType.MAGNETIC_NOT_RECOGNIZED;
+			}
+		}
+	}
+
+	public static BusinessException getBusinessException(OrderResultType orderResultType) {
+		switch (orderResultType) {
+			case CARD_LIMIT_EXCEEDED -> {
+				return new BusinessException(ErrorCode.CARD_LIMIT_EXCEEDED_ERROR);
+			}
+			case MAGNETIC_NOT_RECOGNIZED -> {
+				return new BusinessException(ErrorCode.MAGNETIC_NOT_RECOGNIZED_ERROR);
+			}
+			case NETWORK_ERROR -> {
+				return new BusinessException(ErrorCode.NETWORK_FAIN_ERROR);
+			}
+			default -> {
+				return new BusinessException(ErrorCode.RESPONSE_DELAY_ERROR);
 			}
 		}
 	}
