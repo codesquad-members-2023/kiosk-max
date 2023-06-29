@@ -4,5 +4,4 @@ public record OrdersRequest(
 	int paymentId,
 	int amount
 ) {
-
 }
