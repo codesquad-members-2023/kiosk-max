@@ -16,7 +16,7 @@ public class OrderItemOption {
 		this.optionsId = optionsId;
 	}
 
-	public OrderItemOption giveOrderItemId(int orderItemId) {
+	public OrderItemOption assignOrderItemId(int orderItemId) {
 		this.orderItemId = orderItemId;
 		return this;
 	}

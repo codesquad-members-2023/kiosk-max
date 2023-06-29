@@ -62,15 +62,15 @@ public class OrderRepository {
 			));
 	}
 
-	public int save(Orders orders) {
+	public int saveOrder(Orders orders) {
 		orders.calculatePriceInfo(calculateTotal(orders.getOrderItems()));
 		int orderId = saveOrderAndReturnId(orders);
 
 		for (OrderItem orderItem : orders.getOrderItems()) {
-			int orderItemId = saveOrderItem(orderItem.giveOrdersId(orderId));
+			int orderItemId = saveOrderItem(orderItem.assignOrdersId(orderId));
 
 			for (OrderItemOption orderItemOption : orderItem.getOrderItemOptions()) {
-				saveOrderItemOption(orderItemOption.giveOrderItemId(orderItemId));
+				saveOrderItemOption(orderItemOption.assignOrderItemId(orderItemId));
 			}
 		}
 

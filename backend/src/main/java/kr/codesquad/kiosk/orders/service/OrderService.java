@@ -41,7 +41,7 @@ public class OrderService {
 
 		if (orderResultType == OrderResultType.SUCCESS) {
 			return new OrdersIdResponse(
-				orderRepository.save(request.toOrders())
+				orderRepository.saveOrder(request.toOrders())
 			);
 		}
 

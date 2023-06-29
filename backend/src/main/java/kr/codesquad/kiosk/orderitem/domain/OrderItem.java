@@ -18,7 +18,7 @@ public class OrderItem {
 
 	private List<OrderItemOption> orderItemOptions;
 
-	public OrderItem giveOrdersId(int ordersId) {
+	public OrderItem assignOrdersId(int ordersId) {
 		this.ordersId = ordersId;
 		return this;
 	}
