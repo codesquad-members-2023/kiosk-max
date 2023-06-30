@@ -37,7 +37,7 @@ export const PaymentModal = ({
       orderItem: basketList.map((item) => {
         return {
           itemId: item.id,
-          count: item.count,
+          quantity: item.count,
           options: Object.values(item.options).map((option) => option.id),
         };
       }),
@@ -194,23 +194,20 @@ const CashModal = ({
       orderItem: basketList.map((item) => {
         return {
           itemId: item.id,
-          count: item.count,
+          quantity: item.count,
           options: Object.values(item.options).map((option) => option.id),
         };
       }),
     };
 
     try {
-      const response = await fetch(
-        "http://43.201.168.11:8080/test-api/orders-failure",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(obj),
-        }
-      );
+      const response = await fetch("http://43.201.168.11:8080/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      });
       const data = await response.json();
 
       if (!response.ok) {
