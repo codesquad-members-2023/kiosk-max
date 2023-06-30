@@ -158,12 +158,12 @@
   border: none;
   border-radius: 10px;
   background: #ff7d37;
-  opacity: 0.3;
+  opacity: 1;
   cursor: pointer;
 }
 
 .cashPaymentButton:disabled {
-  opacity: 1;
+  opacity: 0.3;
 }
 
 .cashModal {
