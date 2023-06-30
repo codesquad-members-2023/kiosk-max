@@ -1,3 +1,9 @@
+.main {
+  position: relative;
+  flex: 1;
+  overflow-y: scroll;
+}
+
 .container {
   width: 620px;
   display: flex;
@@ -5,4 +11,19 @@
   margin: 0 auto;
   margin-top: 80px;
   justify-content: space-between;
+}
+
+@keyframes fadeInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-3%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInFromTop {
+  animation: fadeInFromTop 1s cubic-bezier(0.19, 1, 0.22, 1);
 }

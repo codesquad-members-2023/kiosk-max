@@ -7,6 +7,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fcfeff;
+  z-index: 2;
+}
+
+.cartInAnimate {
+  transition: opacity 1s;
+  opacity: 0;
 }
 
 .container {

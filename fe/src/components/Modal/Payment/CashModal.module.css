@@ -1,0 +1,68 @@
+.container {
+  width: 770px;
+  height: 770px;
+  background-color: #fcfeff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 45px;
+  gap: 68px;
+  z-index: 2;
+}
+
+.cashLists {
+  width: 100%;
+}
+
+.cashLists ul {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  gap: 40px;
+}
+
+.container li {
+  width: 47%;
+}
+
+.container ul li button {
+  width: 100%;
+  height: 111px;
+  border: none;
+  background-color: #303344;
+  color: #fcfeff;
+  font-weight: bold;
+  font-size: 32px;
+  border-radius: 17px;
+}
+
+.priceLists {
+  display: flex;
+  font-size: 32px;
+  gap: 80px;
+  color: #444444;
+}
+
+.paymentButton {
+  width: 100%;
+  height: 70px;
+  background-color: rgb(233, 55, 85, 0.5);
+  border: none;
+  border-radius: 17px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fcfeff;
+}
+
+.paymentButtonActive {
+  transition: all 0.3s;
+  background-color: rgb(233, 55, 85);
+}

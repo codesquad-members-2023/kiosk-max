@@ -1,0 +1,42 @@
+.cart {
+  width: 100%;
+  height: 297px;
+  background-color: #fcfeff;
+  position: sticky;
+  bottom: 0;
+  padding: 30px 30px 30px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.buttons button {
+  width: 232px;
+  border-radius: 17px;
+  font-size: 28px;
+  border: none;
+  color: #fcfeff;
+  font-weight: bold;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 2px 8px,
+    rgba(17, 17, 26, 0.05) 0px 4px 16px;
+}
+
+.cancel {
+  padding: 14px 0;
+  background-color: #929292;
+}
+
+.payment {
+  padding: 52px 0;
+  background-color: #eb3557;
+}
+
+.nothing {
+  display: none;
+}

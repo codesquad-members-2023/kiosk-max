@@ -1,31 +1,26 @@
+.header {
+  position: sticky;
+  top: 0;
+}
+
 .container {
-  background-color: #eee;
-  overflow-x: hidden; /* 수정 */
-  width: 900px;
-  height: 90px;
+  position: relative;
+  overflow-x: scroll;
 }
 
 .container ul {
+  width: 1350px;
   display: flex;
-  height: 90px;
-  width: fit-content;
-  padding: 0;
 }
-
 .container ul li {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 270px;
-  /* padding: 10px; */
+  height: 90px;
   border: 1px solid #fcfeff;
   background-color: #303345;
-  white-space: nowrap;
   color: #fcfeff;
-}
-
-.container ul li:last-child {
-  margin-right: 0;
 }
 
 .container ul li button {
@@ -42,4 +37,5 @@
 .container ul li button.selectedTab {
   background-color: #fcfeff;
   color: #303345;
+  transition: all 0.4s;
 }

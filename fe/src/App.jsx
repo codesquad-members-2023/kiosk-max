@@ -3,50 +3,70 @@ import styles from './App.module.css';
 import CategoryTab from './components/CategoryTab/CategoryTab';
 import MenuList from './components/Menu/MenuList';
 import MenuModal from './components/Modal/Menu/MenuModal';
-import Dim from './components/Modal/Dim/Dim';
-// 모달별로 showMenuModal, showPaymentsModal, showLoading, showCashModal 등등 별코딩 useEffect 참고
-// useEffect의 cleanUp 잘 활용할것
+import Cart from './components/Cart/Cart';
 
-function App() {
+export default function App() {
   const [categoryLists, setCategoryLists] = useState([]);
-  const [selectedTab, setSelectedTab] = useState('coffee'); // 현재 선택된 탭의 인덱스
+  const [selectedTab, setSelectedTab] = useState('coffee');
   const [drinksLists, setDrinksLists] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
-  const [showMenuModal, setShowMenuModal] = useState(false);
-
-  const handleOpenMenuModal = () => {
-    setShowMenuModal(true);
-  };
-
-  const handleCloseMenuModal = () => {
-    setShowMenuModal(false);
-  };
+  const [modalType, setModalType] = useState('');
+  const [cartList, setCartList] = useState([]);
 
   useEffect(() => {
-    fetch(`https://example.com/api/categories`)
+    fetch(`http://52.79.68.54:8080/drinks/categories`)
       .then((response) => response.json())
       .then((data) => {
         setCategoryLists(data);
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`http://52.79.68.54:8080/drinks?type=${selectedTab}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setDrinksLists(data);
+      });
+  }, [selectedTab]);
+
   const handleTabSelect = (id) => {
     setSelectedTab(id);
   };
 
-  useEffect(() => {
-    console.log(selectedTab);
-    fetch(`https://example.com/api/drinks?category=${selectedTab}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setDrinksLists(data);
-        console.log(drinksLists); // fetch가 완료된 후에 로그를 출력합니다.
-      });
-  }, [selectedTab]);
-
   const handleItemSelect = (key) => {
     const selectedItemObj = drinksLists.find((item) => item.id === key);
     setSelectedItem(selectedItemObj);
+  };
+
+  const handleAddCartItem = (cartItem) => {
+    const sameDrinkIndex = cartList.findIndex(
+      (item) =>
+        item.drinkId === cartItem.drinkId &&
+        item.size === cartItem.size &&
+        item.temperature === cartItem.temperature
+    );
+
+    if (sameDrinkIndex >= 0) {
+      const newCartList = cartList.map((item, index) => {
+        return index === sameDrinkIndex
+          ? { ...item, quantity: item.quantity + cartItem.quantity }
+          : item;
+      });
+
+      setCartList(newCartList);
+      return;
+    }
+
+    const newCartList = [cartItem, ...cartList];
+
+    setCartList(newCartList);
+  };
+
+  const handleRemoveCartItem = (target) => {
+    const newCartList = cartList.filter(
+      (item) => item.listId !== target.listId
+    );
+    setCartList(newCartList);
   };
 
   return (
@@ -58,20 +78,24 @@ function App() {
       />
       <MenuList
         menuItems={drinksLists}
-        handleOpenMenuModal={handleOpenMenuModal}
+        selectedTab={selectedTab}
+        setModalType={setModalType}
         handleItemSelect={handleItemSelect}
       />
-      {showMenuModal && (
-        <>
-          <Dim />
-          <MenuModal
-            selectedItem={selectedItem}
-            handleCloseMenuModal={handleCloseMenuModal}
-          />
-        </>
+      <Cart
+        cartList={cartList}
+        setCartList={setCartList}
+        handleRemoveCartItem={handleRemoveCartItem}
+        modalType={modalType}
+        setModalType={setModalType}
+      />
+      {modalType === 'menu' && (
+        <MenuModal
+          selectedItem={selectedItem}
+          setModalType={setModalType}
+          handleAddCartItem={handleAddCartItem}
+        />
       )}
     </div>
   );
 }
-
-export default App;

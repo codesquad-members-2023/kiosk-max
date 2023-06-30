@@ -6,9 +6,10 @@ import teaDrinks from './data/tea';
 import juiceDrinks from './data/juice';
 import latteDrinks from './data/latte';
 import decaffein from './data/decaffein';
+import recipe from './data/recipe';
 
 const handlers = [
-  rest.get('https://example.com/api/drinks', (req, res, ctx) => {
+  rest.get('http://52.79.68.54:8080/drinks', (req, res, ctx) => {
     const category = req.url.searchParams.get('category');
 
     let drinks;
@@ -35,8 +36,23 @@ const handlers = [
     return res(ctx.status(200), ctx.json(drinks));
   }),
 
-  rest.get('https://example.com/api/categories', (req, res, ctx) => {
+  rest.get('http://52.79.68.54:8080/categories', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(catagoryLists));
+  }),
+
+  rest.get('http://52.79.68.54:8080/recipe', (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(recipe));
+  }),
+
+  rest.post('/cart', (req, res, ctx) => {
+    const item = req.body;
+    console.log(item);
+    return res(
+      ctx.json({
+        message: `정상작동중`,
+      }),
+      ctx.status(200)
+    );
   }),
 ];
 

@@ -1,3 +1,18 @@
+@keyframes spin-translate-scale {
+  0% {
+    transform: translate(0, 0) rotate(360deg) scale(1);
+  }
+  25% {
+    transform: translate(-20%, -50%) rotate(270deg) scale(1.2);
+  }
+  75% {
+    transform: translate(-60%, 150%) rotate(90deg) scale(0.5);
+  }
+  100% {
+    transform: translate(-80%, 200%) rotate(0deg) scale(0.3);
+  }
+}
+
 .info {
   width: 570px;
   height: 257px;
@@ -19,15 +34,24 @@
   align-items: center;
 }
 
+.cartInAnimate {
+  animation: spin-translate-scale 1s infinite linear;
+}
+
 .menu img {
   width: 118px;
   height: 127px;
 }
 
 .menu span {
+  padding: 0 3px;
   font-weight: 400;
   font-size: 28px;
+  font-weight: bold;
   line-height: 42px;
+  text-align: center;
+  word-break: keep-all;
+  color: #303345;
 }
 
 .options {
@@ -52,7 +76,7 @@
   border: none;
   border-radius: 17px;
   font-size: 28px;
-  font-weight: 400;
+  font-weight: bold;
   line-height: 42px;
 }
 
@@ -67,10 +91,7 @@
   opacity: 0.5;
 }
 
-.size .selectedSize {
-  opacity: 1;
-}
-
+.size .selectedSize,
 .temperature .selectedTemperature {
   opacity: 1;
 }
@@ -95,7 +116,7 @@
 }
 
 .count {
-  color: #444;
+  color: #303345;
   font-weight: 400;
   font-size: 28px;
   line-height: 42px;
@@ -109,7 +130,7 @@
   font-weight: 400;
   font-size: 28px;
   line-height: 42px;
-  color: #444;
+  color: #303345;
   display: flex;
   align-items: center;
   text-align: center;

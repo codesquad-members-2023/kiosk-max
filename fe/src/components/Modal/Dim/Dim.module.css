@@ -6,4 +6,10 @@
   opacity: 0.5;
   position: fixed;
   top: 0;
+  z-index: 1;
+}
+
+.cartInAnimate {
+  transition: opacity 1s;
+  opacity: 0;
 }

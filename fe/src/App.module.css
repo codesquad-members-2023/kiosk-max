@@ -136,6 +136,7 @@ table {
 
 body {
   width: 900px;
+  height: 100%;
   margin: 0 auto;
   font-family: 'IBM Plex Sans KR', sans-serif;
 }
@@ -143,5 +144,9 @@ body {
 .main {
   width: 900px;
   height: 100vh;
+  display: flex;
+  position: relative;
+  flex-direction: column;
   background-color: #eeeeee;
+  border: 3px solid #303345;
 }

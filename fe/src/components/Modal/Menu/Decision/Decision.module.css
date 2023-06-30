@@ -5,29 +5,24 @@
   justify-content: space-between;
 }
 
+.cancel,
+.add {
+  border: none;
+  border-radius: 17px;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 42px;
+  color: #fcfeff;
+}
+
 .cancel {
   width: 144px;
   height: 70px;
-  border: none;
-  border-radius: 17px;
   background-color: #808080;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 42px;
-  color: #fcfeff;
 }
 
 .add {
   width: 386px;
   height: 70px;
-  border-radius: 17px;
-  font-size: 25px;
-  font-weight: bold;
-  border: none;
   background-color: #e93755;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 42px;
-  color: #fcfeff;
 }
