@@ -51,7 +51,7 @@ public class OrderService {
 	@Transactional
 	public OrdersIdResponse createOrderWithDelayAndRandomSucceed(OrderReceiptRequest request) {
 		causePaymentDelay(request.getPaymentType());
-		return createOrder(request, OrderResultType.getRandomOrderResultType());
+		return createOrder(request, determineOrderResultType(request.getPaymentType()));
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class OrderService {
 	 */
 	@Transactional
 	public OrdersIdResponse createOrderWithNonDelayAndRandomSucceed(OrderReceiptRequest request) {
-		return createOrder(request, OrderResultType.getRandomOrderResultType());
+		return createOrder(request, determineOrderResultType(request.getPaymentType()));
 	}
 
 	@Transactional
@@ -84,5 +84,13 @@ public class OrderService {
 		} catch (InterruptedException e) {
 			throw OrderResultType.getBusinessException(OrderResultType.RESPONSE_DELAY);
 		}
+	}
+
+	private OrderResultType determineOrderResultType(PaymentType paymentType) {
+		if (PaymentType.CARD_PAYMENT != paymentType) {
+			return OrderResultType.SUCCESS;
+		}
+
+		return OrderResultType.getRandomOrderResultType();
 	}
 }
