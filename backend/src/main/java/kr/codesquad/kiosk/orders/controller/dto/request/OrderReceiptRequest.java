@@ -3,6 +3,7 @@ package kr.codesquad.kiosk.orders.controller.dto.request;
 import java.util.List;
 
 import kr.codesquad.kiosk.orders.domain.Orders;
+import kr.codesquad.kiosk.payment.domain.PaymentType;
 
 public record OrderReceiptRequest(
 	OrdersRequest orders,
@@ -18,5 +19,9 @@ public record OrderReceiptRequest(
 					.toList()
 			)
 			.build();
+	}
+
+	public PaymentType getPaymentType() {
+		return PaymentType.getPaymentType(orders.paymentId());
 	}
 }
