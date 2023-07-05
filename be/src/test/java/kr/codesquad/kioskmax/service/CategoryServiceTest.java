@@ -1,11 +1,5 @@
 package kr.codesquad.kioskmax.service;
 
-import static org.mockito.BDDMockito.given;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import kr.codesquad.kioskmax.annotation.ServiceTest;
 import kr.codesquad.kioskmax.domain.Category;
 import kr.codesquad.kioskmax.domain.Menu;
@@ -17,6 +11,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.mockito.BDDMockito.given;
 
 @ServiceTest
 class CategoryServiceTest {
@@ -30,8 +31,8 @@ class CategoryServiceTest {
 	@Mock
 	private CategoryRepository categoryRepository;
 
+	@DisplayName("DB에서 카테고리별 메뉴를 가져올수 있다.")
 	@Test
-	@DisplayName("DB에서 카테고리별 메뉴를 가져올수 있다. ")
 	void findAllCategories() {
 
 		//given
