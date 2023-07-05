@@ -3,6 +3,7 @@ package kr.codesquad.kiosk.orders.service;
 import kr.codesquad.kiosk.exception.BusinessException;
 import kr.codesquad.kiosk.exception.ErrorCode;
 import kr.codesquad.kiosk.fixture.FixtureFactory;
+import kr.codesquad.kiosk.orders.controller.dto.OptionDetailsParam;
 import kr.codesquad.kiosk.orders.controller.dto.OrderItemResponse;
 import kr.codesquad.kiosk.orders.controller.dto.response.OrderReceiptResponse;
 import kr.codesquad.kiosk.orders.repository.OrderRepository;
@@ -15,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -48,7 +50,9 @@ class OrderServiceTest {
 
 		// then
 		SoftAssertions.assertSoftly(softAssertions -> {
-			softAssertions.assertThat(receipt.items()).isEqualTo(List.of(new OrderItemResponse("콜드브루", 2, 10000)));
+			softAssertions.assertThat(receipt.items()).isEqualTo(List.of(new OrderItemResponse("콜드브루", 2, 10000,
+					List.of(Map.of("Size", new OptionDetailsParam(1, "Large")),
+							Map.of("Temperature", new OptionDetailsParam(3, "Hot"))))));
 			softAssertions.assertThat(receipt.payments()).isEqualTo("card");
 			softAssertions.assertThat(receipt.amount()).isEqualTo(10000);
 			softAssertions.assertThat(receipt.total()).isEqualTo(10000);
