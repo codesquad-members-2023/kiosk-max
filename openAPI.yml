@@ -11,8 +11,6 @@ info:
 servers:
   - url: https://petstore3.swagger.io/api/v3
 tags:
-  - name: Main
-    description: 메인
   - name: Drink
     description: 음료
   - name: Order
@@ -20,19 +18,19 @@ tags:
   - name: Payment
     description: 결제
 paths:
-  /index:
+  /drinks/categories:
     get:
       tags:
-        - Main
-      summary: 메인 페이지 조회
-      operationId: getMain
+        - Drink
+      summary: 카테고리 목록 조회
+      operationId: getCategories
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Main'
+                $ref: '#/components/schemas/Categories'
   /drinks:
     get:
       tags:
@@ -92,9 +90,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Order-Response'
+                $ref: '#/components/schemas/Order-Response'
   /payments:
     get:
       tags:
@@ -109,30 +105,51 @@ paths:
               schema:
                 type: array
                 items:
-                  allOf:
+                  anyOf:
                     - $ref: '#/components/schemas/Card'
                     - $ref: '#/components/schemas/Cash'
 components:
   schemas:
-    # Main
-    Main:
+    # Size-Option
+    Size-Option:
       type: object
       properties:
-        categories:
+        type:
+          type: string
+          example: size
+        values:
           type: array
           items:
             anyOf:
-              - $ref: '#/components/schemas/Coffee'
-              - $ref: '#/components/schemas/Latte'
-              - $ref: '#/components/schemas/Tea'
-              - $ref: '#/components/schemas/Juice'
-              - $ref: '#/components/schemas/Decaffeine'
-        coffee:
+              - $ref: '#/components/schemas/Size-Small'
+              - $ref: '#/components/schemas/Size-Medium'
+              - $ref: '#/components/schemas/Size-Big'
+
+    # Temperature-Option
+    Temperature-Option:
+      type: object
+      properties:
+        type:
+          type: string
+          example: temperature
+        values:
           type: array
           items:
             anyOf:
-              - $ref: '#/components/schemas/Americano'
-              - $ref: '#/components/schemas/Coldbrew'
+              - $ref: '#/components/schemas/Temperature-Hot'
+              - $ref: '#/components/schemas/Temperature-Cold'
+
+
+    # Categories
+    Categories:
+      type: array
+      items:
+        anyOf:
+          - $ref: '#/components/schemas/Coffee'
+          - $ref: '#/components/schemas/Latte'
+          - $ref: '#/components/schemas/Tea'
+          - $ref: '#/components/schemas/Juice'
+          - $ref: '#/components/schemas/Decaffeine'
 
     # Drink
     Americano:
@@ -153,22 +170,15 @@ components:
         price:
           type: integer
           example: 4000
+        totalQuantity:
+          type: integer
+          example: 50
         options:
-          type: object
-          properties:
-            size:
-              type: array
-              items:
-                anyOf:
-                  - $ref: '#/components/schemas/Size-Big'
-                  - $ref: '#/components/schemas/Size-Medium'
-                  - $ref: '#/components/schemas/Size-Small'
-            temperature:
-              type: array
-              items:
-                anyOf:
-                  - $ref: '#/components/schemas/Temperature-Hot'
-                  - $ref: '#/components/schemas/Temperature-Cold'
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Size-Option'
+              - $ref: '#/components/schemas/Temperature-Option'
     Coldbrew:
       type: object
       properties:
@@ -187,16 +197,14 @@ components:
         price:
           type: integer
           example: 5000
+        totalQuantity:
+          type: integer
+          example: 30
         options:
-          type: object
-          properties:
-            size:
-              type: array
-              items:
-                anyOf:
-                  - $ref: '#/components/schemas/Size-Big'
-                  - $ref: '#/components/schemas/Size-Medium'
-                  - $ref: '#/components/schemas/Size-Small'
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Size-Option'
 
     # Payment
     Card:
@@ -228,38 +236,75 @@ components:
     Order-Request:
       type: object
       properties:
-        order_drink_id:
+        totalAmount:
+          type: integer
+          example: 30000
+        receivedAmount:
+          type: integer
+          example: 30000
+        payment:
+          type: string
+          example: CASH
+        drinks:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Order-Drink-1'
+              - $ref: '#/components/schemas/Order-Drink-2'
+
+    # Order Drink
+    Order-Drink-1:
+      type: object
+      properties:
+        drinkId:
           type: integer
           example: 1
         quantity:
           type: integer
-          example: 3
-        order_price:
+          example: 5
+        orderPrice:
           type: integer
-          example: 12000
-        recived_amount:
+          example: 20000
+        options:
           type: integer
-          example: 12000
+          example: [1, 4]
+    Order-Drink-2:
+      type: object
+      properties:
+        drinkId:
+          type: integer
+          example: 2
+        quantity:
+          type: integer
+          example: 2
+        orderPrice:
+          type: integer
+          example: 10000
         options:
           type: array
           items:
-            anyOf:
-              - $ref: '#/components/schemas/Size-Big'
-              - $ref: '#/components/schemas/Temperature-Cold'
+            type: integer
+            example: 2
 
     # Order Response
     Order-Response:
       type: object
       properties:
-        order_id:
+        dailyOrderId:
           type: integer
           example: 1
-        total_price:
+        payment:
+          type: string
+          example: 현금결제
+        receivedAmount:
           type: integer
-          example: 17000
-        received_amount:
+          example: 30000
+        totalAmount:
           type: integer
-          example: 17000
+          example: 30000
+        change:
+          type: integer
+          example: 0
         drinks:
           type: array
           items:
@@ -271,38 +316,28 @@ components:
     Ordered-Americano:
       type: object
       properties:
-        drink_id:
-          type: integer
-          example: 1
-        drink_name:
+        name:
           type: string
           example: 아메리카노
         quantity:
           type: integer
-          example: 3
-        option_list:
-          type: array
-          items:
-            anyOf:
-              - $ref: '#/components/schemas/Size-Big'
-              - $ref: '#/components/schemas/Temperature-Cold'
+          example: 5
+        options:
+          type: string
+          example: ["L", "HOT"]
     Ordered-Coldbrew:
       type: object
       properties:
-        drink_id:
-          type: integer
-          example: 2
-        drink_name:
+        name:
           type: string
           example: 콜드브루
         quantity:
           type: integer
           example: 1
-        option_list:
+        options:
           type: array
           items:
-            anyOf:
-              - $ref: '#/components/schemas/Size-Medium'
+            example: "M"
 
     # Option-Size
     Size-Big:
@@ -310,37 +345,28 @@ components:
       properties:
         id:
           type: integer
-          example: 1
-        type:
-          type: string
-          example: 사이즈
+          example: 3
         value:
           type: string
-          example: big
+          example: L
     Size-Medium:
       type: object
       properties:
         id:
           type: integer
           example: 2
-        type:
-          type: string
-          example: 사이즈
         value:
           type: string
-          example: medium
+          example: M
     Size-Small:
       type: object
       properties:
         id:
           type: integer
-          example: 3
-        type:
-          type: string
-          example: 사이즈
+          example: 1
         value:
           type: string
-          example: small
+          example: S
 
     # Option-Temperature
     Temperature-Hot:
@@ -349,24 +375,18 @@ components:
         id:
           type: integer
           example: 4
-        type:
-          type: string
-          example: 온도
         value:
           type: string
-          example: hot
+          example: Hot
     Temperature-Cold:
       type: object
       properties:
         id:
           type: integer
           example: 5
-        type:
-          type: string
-          example: 온도
         value:
           type: string
-          example: cold
+          example: Ice
 
     # Category
     Coffee:
