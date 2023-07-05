@@ -1,0 +1,288 @@
+.Cart {
+  border: 2px solid rgba(125, 125, 125, 0.3);
+  /* position: relative; */
+  display: flex;
+  /* flex-shrink: 0; */
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 3rem;
+  box-sizing: border-box;
+  opacity: 1;
+  animation: fadeIn 0.5s forwards;
+
+  background-color: #fff;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.MenuContainer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 350px;
+  gap: 3rem;
+  padding: 2rem;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.CartMenuContainer {
+  display: flex;
+  position: relative;
+  top: -11px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.Menu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  font-size: 22px;
+  font-weight: 100;
+  width: 150px;
+  height: 150px;
+  border: 4px solid #c0abd2;
+  border-radius: 20px;
+  background-color: white;
+  animation: fade-spin-mount 1s forwards;
+}
+
+.Menu img {
+  position: relative;
+  width: 112.5px;
+  height: 112.5px;
+  border-radius: 20px;
+}
+.MenuSize {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 20px;
+  left: 33px;
+  bottom: 8px;
+
+  transform: translate(-50%, 50%) translate(4px, -11px);
+
+  font-size: 13px;
+  font-weight: 100;
+  border-radius: 4px;
+  border: 1px solid #d5d5d5;
+  background-color: #fff;
+  cursor: pointer;
+}
+.MenuName {
+  position: relative;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+
+.MenuPrice {
+  position: relative;
+  font-size: 13px;
+  font-weight: 200;
+}
+
+.MenuCount {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  left: -15px;
+  top: -10px;
+  width: 40px;
+  height: 40px;
+  font-weight: 700;
+  border-radius: 50%;
+  border: 1px solid #c0abd2;
+  background-color: #7c51a1;
+  color: white;
+}
+
+.MenuCloseButton {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+
+  right: 0px;
+  top: 0px;
+  min-width: 40px;
+  min-height: 40px;
+  transform: translate(50%, -50%) translate(-4px, 11px);
+
+  font-size: 20px;
+  font-weight: 100;
+  border-radius: 50%;
+  border: 1px solid #c0abd2;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.MenuCloseButtonText {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: rem;
+  font-weight: 100;
+}
+
+.Hot {
+  bottom: 22px;
+  right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #ff5d5d;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  width: 45px;
+  height: 45px;
+  z-index: 10;
+  border-radius: 50%;
+  transform: translate(50%, 50%) translate(4px, -4px);
+}
+
+.ButtonContainer {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  margin-top: 40px;
+  color: white;
+  font-size: 3rem;
+  width: 300px;
+  font-weight: 700;
+}
+
+.CancelButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  background-color: #fe5757;
+  flex-shrink: 0;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.PaymentButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  background-color: #7c51a1;
+  margin-bottom: 80px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.CountMessages {
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  color: #575757;
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+  top: -35px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.fade-enter {
+  opacity: 0;
+  animation: fade-spin-translate 2s forwards;
+}
+
+@keyframes fade-spin-translate {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(262.5%, -262.5%) rotate(270deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(350%, -350%) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-spin-mount {
+  0% {
+    transform: translate(-150%, -150%) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-112.5%, -112.5%) rotate(270deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-down {
+  0% {
+    transform: translate(0, 0) rotate(360deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-150%, -150%) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.fade-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-exit-active {
+  transform: translateY(150%);
+  opacity: 0;
+  transition: opacity 500ms, transform 500ms;
+}
+
+.zoomed {
+  transform: scale(1.1);
+}
+
+.MenuZoomed {
+  transform: scale(1.1) rotate(360deg);
+}

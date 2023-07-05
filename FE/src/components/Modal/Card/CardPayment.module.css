@@ -1,0 +1,69 @@
+.CardPayment {
+  position: absolute;
+  background-image: url("https://www.svgrepo.com/show/491270/loading-spinner.svg");
+  /* background-image: url("https://www.svgrepo.com/show/110447/loading.svg"); */
+  background-size: 50px auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 500px;
+  height: 500px;
+  z-index: 9999;
+  top: 500px;
+  animation: spin 0.3s infinite linear;
+}
+
+.Message {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  font-size: 50px;
+  font-weight: 700;
+  color: black;
+  z-index: 9999;
+  top: 600px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.ErrorMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 35px;
+  position: absolute;
+  top: 500px;
+  width: 700px;
+  height: 400px;
+  background-color: white;
+  z-index: 9999;
+  border-radius: 30px;
+}
+
+.ErrorMessage img {
+  width: 150px;
+  height: 150px;
+}
+
+.ErrorText {
+  text-align: center;
+  font-size: 37px;
+  width: 600px;
+  line-height: 50px;
+}
+
+.ErrorText span {
+  color: #7c51a1;
+  font-weight: 700;
+}

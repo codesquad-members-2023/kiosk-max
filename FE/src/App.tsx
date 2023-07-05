@@ -1,17 +1,19 @@
 import "./App.css";
-import { ModalProvider } from "./ModalContext";
-import { Dim } from "./components/Dim";
-import { MainPage } from "./components/MainPage";
-import { OrderModal } from "./components/modal/OrderModal";
-import { PaymentModal } from "./components/modal/PaymentModal";
+
+import { ModalProvider } from "./contexts/ModalContext";
+import { MainPage } from "./components/MainPage/MainPage";
+import { Modal } from "./components/Modal/Modal";
+import { Dim } from "./components/Dim/Dim";
+
 
 function App() {
   return (
     <div className="App">
       <ModalProvider>
+
+        <Modal />
         <MainPage />
-        <OrderModal />
-        <PaymentModal />
+
         <Dim />
       </ModalProvider>
     </div>

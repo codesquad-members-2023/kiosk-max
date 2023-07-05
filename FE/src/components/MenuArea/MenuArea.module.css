@@ -1,0 +1,116 @@
+.MenuArea {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  opacity: 1;
+  animation: fadeIn 1s;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.Menu {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 100;
+  width: 350px;
+  height: 350px;
+  border: 6px solid #c0abd2;
+  border-radius: 20px;
+  background-color: #ffffff;
+  margin: 25px 25px;
+  color: #575757;
+  cursor: pointer;
+}
+
+.Menu img {
+  width: 225px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid white;
+}
+
+.MenuName {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.MenuPrice {
+  font-size: 23px;
+  font-weight: 400;
+  color: rgb(55, 55, 55);
+}
+
+.fade-out {
+  transform: translateY(150%);
+  opacity: 1;
+  animation: fadeOut 1s;
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150%);
+    opacity: 0;
+  }
+}
+
+.fade-mount {
+  transform: translateY(0);
+  opacity: 1;
+  animation: fadeMount 1s;
+}
+
+@keyframes fadeMount {
+  0% {
+    transform: translateY(-150%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.StarMark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: 700;
+
+  transform: translate(-50%, -50%) translate(14px, 25px) rotate(-26deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(255, 71, 71);
+  color: white;
+}
+
+.zoomed {
+  transform: scale(1.1);
+  /* font-size: 25px; */
+}

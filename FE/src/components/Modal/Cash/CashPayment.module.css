@@ -1,0 +1,93 @@
+.CashPayment {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: absolute;
+  padding: 50px;
+  top: 350px;
+  width: 700px;
+  height: 700px;
+  gap: 25px;
+  background-color: white;
+  border: 2px solid rgb(213, 213, 213);
+  border-radius: 30px;
+  z-index: 9999;
+  animation: fadeIn 0.8s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.PriceButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7c51a1;
+  width: 300px;
+  height: 130px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.ButtonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
+
+  color: white;
+  font-size: 37px;
+  font-weight: 700;
+}
+
+.PaymentSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 40px;
+  /* height: 100%; */
+}
+
+.AmountContainer {
+  display: flex;
+}
+
+.Amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 50px;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.PaymentButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c0abd2;
+  width: 100%;
+  height: 100px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+}
+
+.Completed {
+  background-color: #7c51a1;
+}
+.zoomed {
+  transform: scale(1.1);
+}
